@@ -1,0 +1,15 @@
+@import '../../assets/Font/Font.css';
+@import '../../helpers/index.scss';
+
+button{
+    background-color: var(--color-black);
+    color: var(--color-white);
+    border: none;
+    border-radius: rem(5);
+    height: 40px;
+    width: 100%;
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

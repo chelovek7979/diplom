@@ -1,0 +1,306 @@
+@import '../../assets/Font/Font.css';
+@import '../../helpers/index.scss';
+
+.basketSpace{
+    background-color: white;
+    width: 100%;
+    max-width: rem(1420);
+    margin: auto;
+    border-radius: 20px;
+    color: black;
+    padding: rem(10);
+    height: 900px;
+    font-family: "AnyConv",sans-serif;
+    
+    table{
+        width: 90%;
+        text-align: center;
+        margin: auto;
+        border-collapse: separate;
+        border-spacing: 0 12px;
+        
+        thead{
+            tr {
+                th {
+                    background-color: var(--color-orange);
+                    padding: 15px 20px;
+                    
+                    &:first-child {
+                        border-radius: 10px 0 0 10px;
+                    }
+                    
+                    &:last-child {
+                        border-radius: 0 10px 10px 0;
+                    }
+                }
+            }
+        }
+        
+        tbody{
+            tr {
+                box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+                
+                td {
+                    border: 1px solid black;
+                    padding: 15px 20px;
+                    background-color: white;
+                    
+                    &:first-child {
+                        border-radius: 10px 0 0 10px;
+                        border-right: none;
+                    }
+                    
+                    &:last-child {
+                        border-radius: 0 10px 10px 0;
+                        border-left: none;
+                    }
+                }
+                
+                &:hover {
+                    td {
+                        background-color: #f9fafb;
+                        transition: all 0.3s ease;
+                    }
+                }
+            }
+            .total{
+                background-color: var(--color-orange);
+            }
+        }
+    }
+
+    // ========== АДАПТИВНОСТЬ ==========
+
+    // Планшеты (768px - 1024px)
+    @media (max-width: 1024px) {
+        padding: rem(15);
+        height: auto;
+        min-height: 700px;
+
+        table {
+            width: 95%;
+            border-spacing: 0 10px;
+        }
+    }
+
+    // Планшеты (768px)
+    @media (max-width: 768px) {
+        padding: rem(10);
+        border-radius: 15px;
+
+        table {
+            width: 100%;
+            border-spacing: 0 8px;
+
+            thead {
+                display: none; // Скрываем заголовок на мобильных
+            }
+
+            tbody {
+                tr {
+                    display: block;
+                    margin-bottom: 15px;
+                    border-radius: 10px;
+                    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+
+                    td {
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+                        border: 1px solid black;
+                        padding: 12px 15px;
+                        text-align: right;
+                        
+                        // Добавляем псевдо-элемент для заголовков
+                        &::before {
+                            content: attr(data-label);
+                            font-weight: bold;
+                            text-align: left;
+                            margin-right: 15px;
+                            color: #666;
+                        }
+
+                        &:first-child {
+                            border-radius: 10px 10px 0 0;
+                            border-right: 1px solid black;
+                            border-bottom: none;
+                        }
+
+                        &:last-child {
+                            border-radius: 0 0 10px 10px;
+                            border-left: 1px solid black;
+                            border-top: none;
+                        }
+
+                        // Убираем специальные стили для границ
+                        &:not(:first-child):not(:last-child) {
+                            border-radius: 0;
+                            border-right: 1px solid black;
+                            border-left: 1px solid black;
+                        }
+                    }
+
+                    &:hover td {
+                        background-color: #f9fafb;
+                    }
+                }
+
+                .total {
+                    td {
+                        background-color: var(--color-orange);
+                        font-weight: bold;
+                        font-size: 1.1rem;
+                    }
+                }
+            }
+        }
+    }
+
+    // Мобильные телефоны (480px)
+    @media (max-width: 480px) {
+        padding: rem(8);
+        border-radius: 12px;
+
+        table {
+            tbody {
+                tr {
+                    margin-bottom: 12px;
+
+                    td {
+                        padding: 10px 12px;
+                        font-size: 14px;
+                        flex-wrap: wrap;
+                        
+                        &::before {
+                            font-size: 13px;
+                            min-width: 100px;
+                        }
+
+                        // Кнопки управления количеством
+                        button {
+                            padding: 5px 10px;
+                            margin: 0 5px;
+                        }
+                    }
+                }
+
+                .total {
+                    td {
+                        font-size: 16px;
+                        padding: 12px;
+                        
+                        &::before {
+                            font-weight: bold;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    // Маленькие телефоны (375px)
+    @media (max-width: 375px) {
+        table {
+            tbody {
+                tr {
+                    td {
+                        flex-direction: column;
+                        text-align: center;
+                        gap: 8px;
+                        
+                        &::before {
+                            margin-right: 0;
+                            margin-bottom: 5px;
+                            text-align: center;
+                            width: 100%;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    // Альбомная ориентация на телефонах
+    @media (max-width: 768px) and (orientation: landscape) {
+        height: auto;
+        min-height: 500px;
+        
+        table {
+            tbody {
+                tr {
+                    td {
+                        padding: 8px 12px;
+                        
+                        &::before {
+                            min-width: 80px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+// Дополнительные стили для элементов управления в мобильной версии
+@media (max-width: 768px) {
+    .basketSpace {
+        table {
+            tbody {
+                tr {
+                    td {
+                        // Стили для блока с количеством
+                        &:nth-child(3) {
+                            justify-content: center;
+                            gap: 15px;
+                            
+                            button {
+                                width: 30px;
+                                height: 30px;
+                                border-radius: 8px;
+                                border: 1px solid var(--color-orange);
+                                background: white;
+                                cursor: pointer;
+                                font-size: 18px;
+                                font-weight: bold;
+                                transition: all 0.2s ease;
+
+                                &:hover {
+                                    background: var(--color-orange);
+                                    color: white;
+                                }
+
+                                &:active {
+                                    transform: scale(0.95);
+                                }
+                            }
+
+                            span {
+                                min-width: 30px;
+                                text-align: center;
+                                font-weight: bold;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+// Анимация для мобильного меню
+@media (max-width: 768px) {
+    @keyframes slideIn {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .basketSpace table tbody tr {
+        animation: slideIn 0.3s ease-out;
+    }
+}
