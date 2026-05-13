@@ -1,5 +1,6 @@
+
+@use '../src/helpers/index.scss';
 @import '../src/assets/Font/Font.css';
-@import '../src/helpers/index.scss';
 
 body{
     background-color: #00171F;
@@ -172,9 +173,9 @@ svg * {
   transition-property: fill, stroke;
 }
 .exitButtom{
-    max-width: rem(420);
-    margin: rem(10) auto;
-    padding: 0 rem(10);
+    max-width: 420;
+    margin: 10px auto;
+    padding: 0 10px;
     font-family: "AnyConv",sans-serif;
     transition: 0.2s;
     background-color: #ca3813;
