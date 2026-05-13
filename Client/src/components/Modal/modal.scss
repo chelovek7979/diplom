@@ -1,0 +1,71 @@
+@import '../../assets/Font/Font.css';
+@import '../../helpers/index.scss';
+
+
+.modal{
+ position: fixed;   
+ top: 50%;
+ left: 50%;
+ min-width: 820px;
+ translate: -50% -50%;
+ background: linear-gradient(135deg, var(--color-orange) 0%, darken(#ff6b35e8, 5%) 100%);
+box-shadow: 0 rem(25) rem(50) rgba(0, 0, 0, 0.3), 0 0 0 rem(1) rgba(255, 255, 255, 0.1) inset;
+backdrop-filter: blur(10);
+border: 1px solid black;
+ padding: rem(50) rem(60);
+ border-radius: rem(20);
+ color: var(--color-white);
+ font-family: "AnyConv",sans-serif;
+ display: flex;
+ z-index: 2;
+
+ .modal-content{
+   display: flex;
+   flex-direction: column;
+   gap: rem(20);
+
+    h2{
+       text-align: center;
+        text-align: center;
+      font-size: rem(32);
+      margin: 0;
+      font-weight: 600;
+      letter-spacing: rem(1);
+      text-shadow: rem(2) rem(2) rem(4) rgba(0, 0, 0, 0.2);
+      position: relative;
+    }
+   
+    input{
+       height: rem(40);
+       border-radius: rem(5);
+    }
+   
+
+ }
+img{
+   width: 50%;
+   margin-left: auto;
+}
+
+}
+   @media (max-width: 768px) {
+      .modal{
+         position: fixed;   
+         top: 50%;
+         left: 50%;
+         min-width: auto;
+         translate: -50% -50%;
+         background-color: var(--color-orange) ;
+         padding: rem(50) ;
+         border-radius: rem(20);
+         color: var(--color-white);
+         font-family: "AnyConv",sans-serif;
+         display: flex;
+         
+         img{
+        display: none
+         
+         }
+  }
+
+}

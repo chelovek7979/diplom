@@ -4,12 +4,14 @@ import { useCart } from '../../Card-contecst/CartProvider'
 
 
 
-export default function Header_right({bascket}){
+export default function Header_right({bascket,openLogin }){
     const { totalCount } = useCart();
 
     return(
         <div className="header_right">
-            <img src={User} alt="" />
+            <img src={User}
+            alt=""
+            onClick={openLogin} />
             <img src={Baskett} alt="" onClick={() => bascket('basket')}/>
             <span>{totalCount}</span>
             

@@ -1,0 +1,106 @@
+@import '../../assets/Font/Font.css';
+@import '../../helpers/index.scss';
+
+form {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    gap: rem(20);
+    
+    input, select {
+        height: 40px;
+        border-radius: rem(5);
+        padding-left: rem(5);
+    }
+    
+    .green {
+        background-color: rgb(18, 199, 36);
+        transition: 0.2s;
+        
+        &:hover {
+            background-color: rgb(11, 229, 33);
+        }
+    }
+    
+    
+    @media (max-width: 768px) {
+        width: 70%;
+        gap: rem(15);
+        
+        input, select {
+            height: 42px; 
+            font-size: 16px; 
+        }
+    }
+    
+    
+    @media (max-width: 576px) {
+        width: 100%;
+        gap: rem(12);
+        
+        input, select {
+            height: 44px; 
+            font-size: 16px;
+            padding-left: rem(10);
+            border: 1px solid #ddd;
+            
+            &:focus {
+                outline: none;
+                border-color: var(--color-orange);
+                box-shadow: 0 0 0 2px rgba(var(--color-orange-rgb), 0.2);
+            }
+        }
+        
+        .green {
+            height: 44px;
+            font-size: 16px;
+            font-weight: 600;
+            margin-top: rem(5);
+        }
+    }
+    
+    
+    @media (max-width: 380px) {
+        gap: rem(10);
+        
+        input, select {
+            height: 40px;
+            font-size: 14px;
+        }
+        
+        .green {
+            height: 40px;
+            font-size: 14px;
+        }
+    }
+}
+
+
+.error-messages {
+    margin-top: rem(15);
+    padding: rem(10);
+    background-color: #fee;
+    border-left: 4px solid #f00;
+    border-radius: rem(5);
+    
+    ul {
+        margin: 0;
+        padding-left: rem(20);
+        
+        li {
+            color: #d32f2f;
+            font-size: 14px;
+            margin: rem(5) 0;
+        }
+    }
+    
+    @media (max-width: 576px) {
+        margin-top: rem(10);
+        padding: rem(8);
+        
+        ul li {
+            font-size: 13px;
+            margin: rem(3) 0;
+        }
+    }
+}

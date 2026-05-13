@@ -1,109 +1,106 @@
 @import '../../assets/Font/Font.css';
 @import '../../helpers/index.scss';
 
-.Card_section{
-    font-family: "AnyConv",sans-serif;
-    max-width: rem(1440);
-    display: grid;
-    padding: 0 rem(10);
-    /* grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); */
-    grid-template-columns: repeat(auto-fit, minmax(300px, 390px));
-    gap: 40px;
-    margin: auto;
-    /* justify-content: space-between; */
-    justify-content: center;
-    margin-bottom:200px ;
+.Card_section {
+  font-family: "AnyConv", sans-serif;
+  max-width: rem(1440);
+  display: grid;
+  padding: 0 rem(10);
+  grid-template-columns: repeat(auto-fit, minmax(300px, 390px));
+  gap: 40px;
+  margin: auto;
+  justify-content: center;
+  margin-bottom: 200px;
 
-    .wrapper{
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        padding: 15px;
+  .wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 15px;
+    height: 100%;
+
+    .card-photo {
+      height: 300px;
+      width: 100%;
+      position: relative;
+
+      img {
+        object-fit: contain;
         height: 100%;
-        
-        
-       
-
-        .card-photo{
-            height: 300px;
-            width: 100%;
-            position: relative;
-            
-            
-             img{
-                 object-fit: contain;
-                height: 100%;
-                width: 100%;
-               
-                
-             }
-        }
-        .card-title{
-            h2{
-                @include fluid-text(28,16)
-                
-            }
-        }
-        .card-description{
-            p{
-                @include fluid-text(16,10)
-            }
-        }
-        .card-prise{
-            margin: rem(10) 0;
-            span{
-                font-size: 32px;
-                font-weight: 800;
-                background: linear-gradient(135deg, #db7622 0%, #764ba2 100%);
-                -webkit-background-clip: text;
-                -webkit-text-fill-color: transparent;
-                background-clip: text;
-                margin: 12px 0;
-                position: relative;
-                display: inline-block;
-            }
-           
-        }
+        width: 100%;
+      }
     }
 
-    .Card{
-        background-color: rgb(255, 255, 255);
-        border-radius: 10px;
-        box-shadow: 10px 10px 8px 0px rgba(255, 255, 255, 0.2);
-        
-        
+    .card-title {
+      h2 {
+        @include fluid-text(28, 16);
+      }
     }
-    .Content{
-        background-color: #94757514;
-        padding: 5px;
-        border-radius: 20px;
+
+    .card-description {
+      p {
+        @include fluid-text(16, 10);
+      }
     }
+
+    .card-prise {
+      margin: rem(10) 0;
+
+      span {
+        font-size: 32px;
+        font-weight: 800;
+        background: linear-gradient(135deg, #db7622 0%, #764ba2 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        margin: 12px 0;
+        display: inline-block;
+        position: relative;
+      }
+    }
+
+    .card-count {
+      color: var(--color--black);
+      opacity: 0.5;
+      margin-bottom: rem(20);
+    }
+  }
+
+  .Card {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 10px 10px 8px 0 rgba(255, 255, 255, 0.2);
+  }
+
+  .Content {
+    margin-top: rem(30);
+    background-color: #94757514;
+    padding: 5px;
+    border-radius: 20px;
+    height: auto;
+    height:auto;
+  }
 }
-
-
 
 .cart_control {
   display: flex;
   align-items: center;
-  justify-content: center
+  justify-content: center;
 }
-
 
 .counter {
   display: flex;
   align-items: center;
   gap: 10px;
-  
 
   button {
     width: 100px;
     height: 35px;
     border: none;
-    background: rgb(0, 0, 0);
+    background: #000;
     border-radius: 6px;
     font-size: 18px;
     cursor: pointer;
-    
   }
 
   span {

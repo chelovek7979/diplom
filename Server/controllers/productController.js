@@ -12,7 +12,7 @@ export const getProducts = (req, res) => {
 
 // 📦 Получить один товар
 export const getProductById = (req, res) => {
-  const query = "SELECT * FROM card WHERE id = ?";
+  const query = "SELECT * FROM products WHERE idProduct = ?";
 
   db.query(query, [req.params.id], (err, data) => {
     if (err) return res.status(500).json(err);
@@ -22,12 +22,12 @@ export const getProductById = (req, res) => {
 
 // ➕ Добавить товар
 export const createProduct = (req, res) => {
-  const { name, price, image_url } = req.body;
+    const { Product_title, Product_description, Product_price, Product_image_url, Product_category, product_count } = req.body;
 
   const query =
-    "INSERT INTO card (name, price, image_ull) VALUES (?, ?, ?)";
+    "INSERT INTO products (Product_title, Product_description, Product_price, Product_image_url, Product_category, product_count) VALUES (?, ?, ?, ?, ?, ?)";
 
-  db.query(query, [name, price, image_url], (err, result) => {
+  db.query(query, [Product_title, Product_description, Product_price,Product_image_url, Product_category,product_count ], (err, result) => {
     if (err) return res.status(500).json(err);
     return res.json({ message: "Товар добавлен", id: result.insertId });
   });
@@ -35,12 +35,12 @@ export const createProduct = (req, res) => {
 
 // ✏️ Обновить товар
 export const updateProduct = (req, res) => {
-  const { name, price } = req.body;
+  const { Product_title, Product_description, Product_price, Product_image_url, Product_category, product_count } = req.body;
 
   const query =
-    "UPDATE card SET name = ?, price = ? WHERE id = ?";
+    "UPDATE products SET Product_title = ?, Product_description = ?, Product_price = ?,Product_image_url = ?, Product_category = ?, product_count = ? WHERE  idProduct = ?";
 
-  db.query(query, [name, price, req.params.id], (err) => {
+  db.query(query, [Product_title, Product_description,Product_price,Product_image_url,Product_category,product_count,  req.params.id], (err) => {
     if (err) return res.status(500).json(err);
     return res.json({ message: "Товар обновлён" });
   });
@@ -48,7 +48,7 @@ export const updateProduct = (req, res) => {
 
 // ❌ Удалить товар
 export const deleteProduct = (req, res) => {
-  const query = "DELETE FROM card WHERE id = ?";
+  const query = "DELETE FROM products WHERE idProduct = ?";
 
   db.query(query, [req.params.id], (err) => {
     if (err) return res.status(500).json(err);

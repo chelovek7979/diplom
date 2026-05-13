@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import Navigate from "../Navigate/Navigate";
 
-export default function Header_left({bascket}){
+export default function Header_left({bascket,openLogin}){
 
     const [isOpen, setIsOpen] = useState(false);
 
@@ -40,11 +40,12 @@ export default function Header_left({bascket}){
                             }}>Главная</li>
                         <li onClick={() => setIsOpen(false)}>О нас</li>
                         <li onClick={() => setIsOpen(false)}>Контакты</li>
-                        <li onClick={() => setIsOpen(false)}>Личный кабинет</li>
+                        <li onClick={() => setIsOpen(false),openLogin}>Личный кабинет</li>
 
                         <li onClick={() => {
                             bascket('basket');
-                            setIsOpen(false);}
+                            setIsOpen(false);
+                        }
                             }>Корзина</li>
                     </ul>
                     

@@ -24,6 +24,10 @@ export default function Card({ product }){
                     <span>{product.Product_price}{` ₽`}</span>
                 </div>
 
+                <div className="card-count">
+                    <span>{`осталось товара:`}{product.product_count}</span>
+                </div>
+
                 <Button product={product}/>
                 </div>
             </div>
