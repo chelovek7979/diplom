@@ -1,10 +1,10 @@
 @use 'sass:math';
 
-@function rem($pixel) {
-  @if math.is-unitless($pixel) {
-    @return math.div($pixel, 16) + rem;
+@function rem($px) {
+  @if math.is-unitless($px) {
+    @return math.div($px, 16) * 1rem; // правильно возвращает единицу rem
   } @else {
-    @error 'Не используйте единицы измерения при работе с функцией rem()! Передавайте аргументом только числа.'
+    @error 'Передавайте аргументом только числа без единиц.';
   }
 }
 

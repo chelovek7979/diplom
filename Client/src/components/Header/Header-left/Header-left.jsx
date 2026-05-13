@@ -40,7 +40,10 @@ export default function Header_left({bascket,openLogin}){
                             }}>Главная</li>
                         <li onClick={() => setIsOpen(false)}>О нас</li>
                         <li onClick={() => setIsOpen(false)}>Контакты</li>
-                        <li onClick={() => setIsOpen(false),openLogin}>Личный кабинет</li>
+                        <li onClick={() => { 
+                            setIsOpen(false); 
+                            openLogin(); 
+                            }}>Личный кабинет</li>
 
                         <li onClick={() => {
                             bascket('basket');

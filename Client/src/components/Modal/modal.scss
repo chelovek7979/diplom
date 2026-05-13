@@ -1,5 +1,6 @@
+@use '../../helpers/index.scss' as *;
+
 @import '../../assets/Font/Font.css';
-@import '../../helpers/index.scss';
 
 
 .modal{
@@ -8,11 +9,16 @@
  left: 50%;
  min-width: 820px;
  translate: -50% -50%;
- background: linear-gradient(135deg, var(--color-orange) 0%, darken(#ff6b35e8, 5%) 100%);
-box-shadow: 0 rem(25) rem(50) rgba(0, 0, 0, 0.3), 0 0 0 rem(1) rgba(255, 255, 255, 0.1) inset;
+ background: linear-gradient(
+  135deg,
+  var(--color-orange) 0%,
+  color-mix(in srgb, #ff6b35 95%, black 5%) 100%
+);
+box-shadow: 0 25 50 rgba(0, 0, 0, 0.3), 0 0 0 1 rgba(255, 255, 255, 0.1) inset;
 backdrop-filter: blur(10);
 border: 1px solid black;
  padding: rem(50) rem(60);
+ 
  border-radius: rem(20);
  color: var(--color-white);
  font-family: "AnyConv",sans-serif;

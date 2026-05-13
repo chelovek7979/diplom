@@ -1,11 +1,11 @@
+@use '../../helpers/index.scss' as *;
 @import '../../assets/Font/Font.css';
-@import '../../helpers/index.scss';
 
 .admin-panel {
     display: flex;
     height: auto;
     font-family: Arial, sans-serif;
-    max-width: rem(1420);
+    max-width: 1420px;
     margin: rem(10) auto;
     padding: 0 rem(10);
     
