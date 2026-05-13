@@ -8,17 +8,14 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// статика для картинок
+// статика
 app.use("/uploads", express.static("uploads"));
+
 app.use("/api/users", userRoutes);
-
-/* app.use("/uploads/electronics", express.static("uploads"));
-app.use("/uploads/kitchen_items", express.static("uploads")); */
-
 app.use("/api/diplom_bd", productRoutes);
 
+const PORT = process.env.PORT || 3000;
 
-app.listen(3000, () => {
-  console.log("Сервер запущен на порту 3000");
+app.listen(PORT, () => {
+  console.log(`Сервер запущен на порту ${PORT}`);
 });
-
