@@ -1,0 +1,59 @@
+/* landing.scss - добавляем внизу */
+.reviews-carousel {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  .review {
+    max-width: 600px;
+    background-color: #002233;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.4);
+    text-align: center;
+    transition: transform 0.5s ease, opacity 0.5s ease;
+  }
+  .nav {
+    font-size: 2rem;
+    background: none;
+    border: none;
+    color: #ff6b35;
+    cursor: pointer;
+    transition: transform 0.2s;
+    &:hover {
+      transform: scale(1.2);
+    }
+  }
+}
+
+.production-info {
+  max-width: 1200px;
+  margin: 50px auto;
+  padding: 30px 20px;
+  background: linear-gradient(135deg, #00334D, #005577);
+  border-radius: 20px;
+  color: #fff;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.4);
+
+  h2 {
+    text-align: center;
+    font-size: 2rem;
+    color: #ff6b35;
+    margin-bottom: 20px;
+  }
+
+  .info-block {
+    margin-bottom: 20px;
+    font-size: 1.1rem;
+    line-height: 1.6;
+
+    p {
+      margin-bottom: 10px;
+    }
+
+    .highlight {
+      font-weight: bold;
+      color: #ff6b35;
+    }
+  }
+}

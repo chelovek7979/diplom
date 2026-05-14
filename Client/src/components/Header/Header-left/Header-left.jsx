@@ -24,7 +24,7 @@ export default function Header_left({bascket,openLogin}){
     return(
         <>
             <div className="header_left">
-                <h1>Розница</h1>
+                <h1>Петроснабкартон</h1>
                 <Navigate bascket={bascket}/>
                 <div className="burger" onClick={() => setIsOpen(!isOpen)}>
                     {isOpen ? "✕" : "☰"}
@@ -37,8 +37,16 @@ export default function Header_left({bascket,openLogin}){
                         <li onClick={() => {
                             bascket('market');
                             setIsOpen(false);
-                            }}>Главная</li>
-                        <li onClick={() => setIsOpen(false)}>О нас</li>
+                            }}>Наша продукция</li>
+
+                        <li onClick={() => {
+                            bascket('landing');
+                            setIsOpen(false);
+                            }}>О нас</li>
+
+
+
+
                         <li onClick={() => setIsOpen(false)}>Контакты</li>
                         <li onClick={() => { 
                             setIsOpen(false); 

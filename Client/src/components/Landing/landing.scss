@@ -1,0 +1,255 @@
+@import '../../assets/Font/Font.css';
+
+
+.landing {
+  font-family: "Arial", sans-serif;
+  color: #fff;
+  background-color: #00171F;
+  
+
+  section.hero {
+    text-align: center;
+    border-radius: 30px;
+    padding: 50px 20px;
+    
+    max-width: 1420px;
+    margin: auto;
+    
+    background: linear-gradient(5deg, #ff6b35 0%, #00171F 100%);
+    
+    h1 {
+      font-size: 3rem;
+      margin-bottom: 10px;
+    }
+    .slogan {
+      font-size: 1.5rem;
+      font-weight: 300;
+      margin-bottom: 30px;
+      color: #fff;
+    }
+    img {
+      width: 80%;
+      max-width: 800px;
+      border-radius: 10px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+      margin: auto;
+      transition: transform 0.5s ease;
+      &:hover {
+        transform: scale(1.05);
+      }
+    }
+  }
+
+  section.about,
+  section.reviews {
+    max-width: 1200px;
+    margin: 30px auto;
+    padding: 20px 20px;
+    background-color: #002233;
+    border-radius: 20px;
+    
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.4);
+    h2 {
+      font-size: 2rem;
+      margin-bottom: 20px;
+      text-align: center;
+      color: #ff6b35;
+    }
+    p {
+      font-size: 1.1rem;
+      line-height: 1.6;
+      
+      text-align: center;
+    }
+  }
+
+  section.instructions {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    margin: 50px auto;
+    width: 100%;
+    max-width: 1420px;
+    .instruction {
+      background: linear-gradient(120deg, #ff6b35, #ff914d);
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+      width: 100vw;          
+      max-height: 200px ;
+      max-width: 1420px;       
+      padding: 20px;
+      
+      border-radius: 15px;
+      color: #00171F;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+      opacity: 0;
+      transform: translateY(30px);
+      animation: fadeSlideIn 0.8s forwards;
+      animation-delay: calc(var(--index) * 0.2s);
+      
+      &:hover {
+        padding-top: 10px;
+        transition: 0.5s;
+      }
+      h2 {
+        font-size: 1.6rem;
+        margin-bottom: 10px;
+        font-weight: 800;
+      }
+      p {
+        font-size: 1.3rem;
+      }
+    }
+  }
+
+  .footer {
+    text-align: center;
+    padding: 30px 20px;
+    background-color: #000;
+    font-size: 0.9rem;
+    color: #fff;
+  }
+}
+
+/* Анимация появления */
+@keyframes fadeSlideIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Адаптив */
+@media (min-width: 768px) {
+  .instructions {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    .instruction {
+      flex: 1 1 300px;
+      max-width: 350px;
+    }
+  }
+}
+
+.map-section {
+  max-width: 1420px;
+  margin: 50px auto;
+  padding: 30px 20px;
+  border-radius: 20px;
+  background: linear-gradient(135deg, #00334D, #005577);
+  color: #fff;
+  text-align: center;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.4);
+
+  h2 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+    color: #ff6b35;
+  }
+
+  p {
+    font-size: 1.1rem;
+    margin-bottom: 20px;
+  }
+
+  .map-container {
+    width: 100%;
+    height: 450px;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+  }
+}
+
+.partners {
+  max-width: 1420px;
+  margin: 50px auto;
+  padding: 30px 20px;
+  text-align: center;
+  //background: linear-gradient(135deg, #00171F, #00334D);
+  box-shadow: 0px 1px 42px 19px rgba(34, 60, 80, 0.2) inset;
+  background-color: white;
+  border-radius: 20px;
+  color: #000000;
+  h2 {
+    font-size: 2rem;
+    margin-bottom: 30px;
+    color: #000000;
+  }
+
+  .partners-logos {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 30px;
+    img {
+      max-height: 80px;
+      filter: brightness(0.8);
+      transition: transform 0.3s, filter 0.3s;
+      &:hover {
+        transform: scale(1.1);
+        filter: brightness(1);
+      }
+    }
+  }
+}
+
+@media (max-width: 1024px) {
+  .landing {
+    .hero h1 {
+      font-size: 2.5rem;
+    }
+
+    .hero .slogan {
+      font-size: 1.3rem;
+    }
+
+    .hero img {
+      width: 90%;
+    }
+
+    .instructions .instruction p {
+      font-size: 1.1rem;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  section.hero,
+  .map-section, 
+  section.about,
+  .partners,
+.production-info,
+  section.instructions,
+  section.reviews {width: 95%;}
+  section.instructions {
+    flex-direction: column;
+    gap: 20px;
+    
+    
+  }
+  .landing section.instructions .instruction {
+      max-height: none ;
+      width: 90vw;
+      max-width: 95%;
+      max-height: auto;
+      margin: auto;
+      height: auto;
+    }
+
+
+
+}
+
+
+@media (max-width: 480px) {
+    .landing section.hero h1 {
+    font-size: 1rem;
+  }
+    .landing section.hero .slogan {
+    font-size: 0.7rem;
+  }
+
+    }
