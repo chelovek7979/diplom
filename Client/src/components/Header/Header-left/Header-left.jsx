@@ -48,7 +48,7 @@ export default function Header_left({bascket,openLogin}){
 
 
                         <li onClick={() => {
-                            bascket('landing')
+                            bascket('contact')
                             setIsOpen(false);
                             }}>Контакты</li>
 
