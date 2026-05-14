@@ -10,7 +10,7 @@ export default function ChangePanel() {
   // Получение товаров с API
   const fetchProducts = async () => {
     try {
-      const res = await fetch("http://localhost:3000/api/diplom_bd");
+      const res = await fetch("https://diplom-1-54sb.onrender.com/api/diplom_bd");
       const data = await res.json();
       setProducts(data);
     } catch (err) {

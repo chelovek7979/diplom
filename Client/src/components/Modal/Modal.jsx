@@ -12,7 +12,7 @@ function LoginModal({ close, setAdmin }) {
     try {
 
       const response = await fetch(
-        'http://localhost:3000/api/users/login',
+        'https://diplom-1-54sb.onrender.com/api/users/login',
         {
           method: 'POST',
           headers: {

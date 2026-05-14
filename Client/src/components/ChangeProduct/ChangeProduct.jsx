@@ -33,7 +33,7 @@ export default function EditProduct({ product, onClose, onUpdate }) {
     setErrors([]);
 
     try {
-      const res = await fetch(`http://localhost:3000/api/diplom_bd/${product.idProduct}`, {
+      const res = await fetch(`https://diplom-1-54sb.onrender.com/api/diplom_bd/${product.idProduct}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -61,7 +61,7 @@ export default function EditProduct({ product, onClose, onUpdate }) {
     if (!window.confirm(`Вы уверены, что хотите удалить "${product.Product_title}"?`)) return;
 
     try {
-      const res = await fetch(`http://localhost:3000/api/diplom_bd/${product.idProduct}`, {
+      const res = await fetch(`https://diplom-1-54sb.onrender.com/api/diplom_bd/${product.idProduct}`, {
         method: "DELETE",
       });
 

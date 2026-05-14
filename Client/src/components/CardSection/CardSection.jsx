@@ -9,7 +9,7 @@ export default function CardSection({category}) {
     
 
     useEffect(() => {
-        fetch("http://localhost:3000/api/diplom_bd")
+        fetch("https://diplom-1-54sb.onrender.com/api/diplom_bd")
             .then(res => res.json())
             .then(res => setData(res));
             

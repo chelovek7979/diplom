@@ -6,7 +6,7 @@ export default function Card({ product }){
         <div className="Card">
             <div className="wrapper">
                 <div className="card-photo">
-                    <img src={`http://localhost:3000/uploads/${product.Product_image_url}`} alt="" />
+                    <img src={`https://diplom-1-54sb.onrender.com/uploads/${product.Product_image_url}`} alt="" />
                 </div>
 
                 <div className="Content">

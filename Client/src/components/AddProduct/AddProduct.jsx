@@ -11,7 +11,7 @@ export default function AddProduct() {
 
   const [errors, setErrors] = useState([]); 
 
-  const categories = ["Электроника", "Кухня", "Инструмент", "спорт","насадки"];
+  const categories = ["electronics", "kitchen_items", "tool", "sport","Snap-in"];
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -34,7 +34,7 @@ export default function AddProduct() {
 
     setErrors([]); 
 
-    const res = await fetch("http://localhost:3000/api/diplom_bd/", {
+    const res = await fetch("https://diplom-1-54sb.onrender.com/api/diplom_bd", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
