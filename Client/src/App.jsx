@@ -8,6 +8,7 @@ import Catalog from './components/Catalog/Catalog'
 import { CartProvider } from './components/Card-contecst/CartProvider'
 import Bascket from './components/Bascket/Bascket'
 import Landing from './components/Landing/landing'
+import ContactInfo from './components/Landing/ContactInfo'
 
 import AdminPanel from './components/AdminPanel/adminPanel'
 import LoginModal from './components/Modal/Modal'
@@ -51,6 +52,7 @@ function App() {
         {market === 'market' && <Catalog />}
         {market === 'basket' && <Bascket />}
         {market === 'landing' && <Landing />}
+        {market === 'contact' && <ContactInfo />}
       </>
     )}
 

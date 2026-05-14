@@ -5,7 +5,8 @@
   justify-content: center;
   gap: 20px;
   .review {
-    max-width: 600px;
+    width: 140%;
+    max-width: 900px;
     background-color: #002233;
     padding: 20px;
     border-radius: 15px;
@@ -17,7 +18,7 @@
     font-size: 2rem;
     background: none;
     border: none;
-    color: #ff6b35;
+    color: #FCA311;
     cursor: pointer;
     transition: transform 0.2s;
     &:hover {
@@ -38,7 +39,7 @@
   h2 {
     text-align: center;
     font-size: 2rem;
-    color: #ff6b35;
+    color: #FCA311;
     margin-bottom: 20px;
   }
 
@@ -53,7 +54,7 @@
 
     .highlight {
       font-weight: bold;
-      color: #ff6b35;
+      color: #FCA311;
     }
   }
 }
