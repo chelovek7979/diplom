@@ -11,7 +11,7 @@ export default function EditProduct({ product, onClose, onUpdate }) {
 
   const [errors, setErrors] = useState([]);
 
-  const categories = ["Электроника", "Инрумент", "Кухня", "Спорт", "Насадки"];
+  const categories = ["electronics", "tool", "kitchen_items", "sport", "Snap-in"];
 
   // ------------------ Сохранение изменений ------------------
   const handleSubmit = async (e) => {
