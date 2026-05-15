@@ -44,6 +44,9 @@ export default function AddProduct() {
     formData.append("image", Product_image_file); // поле "image" должно совпадать с Multer на сервере
 
     try {
+      for (let pair of formData.entries()) {
+  console.log(pair[0], pair[1]);
+}
       const res = await fetch("https://diplom-1-54sb.onrender.com/api/diplom_bd", {
         method: "POST",
         body: formData, // Content-Type будет автоматически multipart/form-data

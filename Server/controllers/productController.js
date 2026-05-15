@@ -22,8 +22,16 @@ export const getProductById = (req, res) => {
 
 // ➕ Добавить товар
 export const createProductWithImage = (req, res) => {
-  console.log("Файл пришёл:", req.file); // объект файла от Cloudinary
-  console.log("Категория:", req.body.Product_category);
+  export const createProductWithImage = async (req, res) => {
+  try {
+    console.log("req.file:", req.file);
+    console.log("req.body:", req.body);
+    res.json({ message: "Файл дошёл до сервера" });
+  } catch (err) {
+    console.error("Ошибка контроллера:", err);
+    res.status(500).json({ message: "Ошибка сервера", error: err.message });
+  }
+};
 
   if (!req.file) return res.status(400).json({ message: "Файл обязателен" });
 
