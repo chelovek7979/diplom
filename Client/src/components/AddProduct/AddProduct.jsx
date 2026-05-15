@@ -120,4 +120,4 @@ export default function AddProduct() {
       )}
     </form>
   );
-}
+} 
