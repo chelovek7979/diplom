@@ -7,7 +7,7 @@ import DiscontText from "../Discont-text/DiscontText"
 
 export default function Catalog(){
 
-    const [category, setCategory] = useState('electronics')
+    const [category, setCategory] = useState('fourclan')
 
     return(
         <>
