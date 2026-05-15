@@ -11,7 +11,7 @@ export default function AddProduct() {
 
   const [errors, setErrors] = useState([]); 
 
-  const categories = ["fourclan", "big", "mail", "sport","Snap-in"];
+  const categories = ["fourclan", "big", "mail", "shoe ","archive"];
 
   const handleSubmit = async (e) => {
     e.preventDefault();
