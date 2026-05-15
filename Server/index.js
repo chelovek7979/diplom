@@ -1,14 +1,18 @@
 import express from "express";
 import path from "path";
+import { fileURLToPath } from "url"; // Для получения __dirname
 import productRoutes from "./routes/productRoutes.js";
 import userRoutes from "./routes/userRoutes.js";
 import cors from "cors";
 import dotenv from "dotenv";
 
-
-dotenv.config(); // загружает переменные из .env в process.env
+dotenv.config(); // загружает переменные из .env
 
 const app = express();
+
+// ES-модули не имеют __dirname, вычисляем вручную
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 app.use(cors());
 app.use(express.json());
