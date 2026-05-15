@@ -28,7 +28,12 @@
         object-fit: contain;
         height: 100%;
         width: 100%;
+        transition: 0.5s;
+        &:hover{
+          scale: 1.1
+        }
       }
+      
     }
 
     .card-title {
@@ -109,4 +114,20 @@
     min-width: 20px;
     text-align: center;
   }
+}
+
+.card-quantity {
+  margin: 10px 0;
+  
+  
+  span{
+    color: #000000;
+  }
+  input{
+    width: 100%;
+    border-radius: 5px;
+    height: 30px;
+    border: 1px solid black;
+  }
+
 }

@@ -1,6 +1,7 @@
 import User from '../../../assets/User_cicrle_light.svg'
 import Baskett from '../../../assets/Basket_alt_3_light.svg'
 import { useCart } from '../../Card-contecst/CartProvider'
+import './Header-right.scss'
 
 
 

@@ -74,12 +74,14 @@
        display: block;
        background-color: rgb(0, 0, 0);
        height: 30px;
-       width: 30px;
+       min-width: 30px;
+       width: auto;
        margin-top: 10px;
-       border-radius: 50%;
+       border-radius: 10px;
        display: flex;
        align-items: center;
        justify-content: center;
+       
        
        
     };

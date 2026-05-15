@@ -81,17 +81,69 @@ export default function EditProduct({ product, onClose, onUpdate }) {
       <form onSubmit={handleSubmit} className="edit-product-form">
         <h2>Редактировать товар</h2>
 
-        <input type="text" placeholder="Название" value={Product_title} onChange={e => setProduct_title(e.target.value)} />
-        <input type="text" placeholder="Описание" value={Product_description} onChange={e => setProduct_description(e.target.value)} />
-        <select value={Product_category} onChange={e => setProduct_category(e.target.value)}>
-          <option value="">Выберите категорию</option>
-          {categories.map((cat, idx) => (
-            <option key={idx} value={cat}>{cat}</option>
-          ))}
-        </select>
-        <input type="number" placeholder="Цена" value={Product_price} onChange={e => setProduct_price(e.target.value)} />
-        <input type="number" placeholder="Количество" value={product_count} onChange={e => setproduct_count(e.target.value)} />
-        <input type="text" placeholder="Путь к картинке" value={Product_image_url} onChange={e => setProduct_image_url(e.target.value)} />
+        {/** Контейнер для каждого поля */}
+        <div className="form-group">
+          <label>Название</label>
+          <input
+            type="text"
+            placeholder="Название"
+            value={Product_title}
+            onChange={e => setProduct_title(e.target.value)}
+          />
+        </div>
+
+        <div className="form-group">
+          <label>Описание</label>
+          <input
+            type="text"
+            placeholder="Описание"
+            value={Product_description}
+            onChange={e => setProduct_description(e.target.value)}
+          />
+        </div>
+
+        <div className="form-group">
+          <label>Выбор категории</label>
+          <select
+            value={Product_category}
+            onChange={e => setProduct_category(e.target.value)}
+          >
+            <option value="">Выберите категорию</option>
+            {categories.map((cat, idx) => (
+              <option key={idx} value={cat}>{cat}</option>
+            ))}
+          </select>
+        </div>
+
+        <div className="form-group">
+          <label>Цена</label>
+          <input
+            type="number"
+            placeholder="Цена"
+            value={Product_price}
+            onChange={e => setProduct_price(e.target.value)}
+          />
+        </div>
+
+        <div className="form-group">
+          <label>Количество</label>
+          <input
+            type="number"
+            placeholder="Количество"
+            value={product_count}
+            onChange={e => setproduct_count(e.target.value)}
+          />
+        </div>
+
+        <div className="form-group">
+          <label>Путь к ресурсу</label>
+          <input
+            type="text"
+            placeholder="Путь к картинке"
+            value={Product_image_url}
+            onChange={e => setProduct_image_url(e.target.value)}
+          />
+        </div>
 
         {errors.length > 0 && (
           <div className="form-errors">

@@ -192,3 +192,40 @@
     opacity: 1;
   }
 }
+
+.edit-product-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 5px; // расстояние между label и input/select
+
+    label {
+      font-weight: 500;
+      font-size: 14px;
+      opacity: 0.8;
+    }
+
+    input, select {
+      padding: 10px 12px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      font-size: 14px;
+      transition: border-color 0.2s ease;
+
+      &:focus {
+        outline: none;
+        border-color: var(--color-orange);
+        box-shadow: 0 0 0 2px rgba(var(--color-orange-rgb), 0.2);
+      }
+
+      @media (max-width: 576px) {
+        font-size: 16px;
+        padding: 12px 10px;
+      }
+    }
+  }
+}

@@ -35,6 +35,7 @@ function App() {
       bascket={bascket}
       openLogin={() => setShowLogin(true)}
     />
+    
 
     {isAdmin ? (
       <>
@@ -48,11 +49,13 @@ function App() {
         <AdminPanel />
       </>
     ) : (
+      
       <>
         {market === 'market' && <Catalog />}
         {market === 'basket' && <Bascket />}
         {market === 'landing' && <Landing />}
         {market === 'contact' && <ContactInfo />}
+        
       </>
     )}
 
@@ -62,7 +65,9 @@ function App() {
         setAdmin={setIsAdmin}
       />
     )}
+    
   </CartProvider>
+  
 )
 }
 
