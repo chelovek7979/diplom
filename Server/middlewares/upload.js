@@ -1,13 +1,11 @@
-// Server/middleware/upload.js
 import multer from "multer";
 import { CloudinaryStorage } from "multer-storage-cloudinary";
-import cloudinary from "../config/cloudinary.js"; // твоя конфигурация Cloudinary
-
+import cloudinary from "../config/cloudinary.js"; // твой cloudinary.js
 
 const storage = new CloudinaryStorage({
-  cloudinary: cloudinary,
+  cloudinary,
   params: {
-    folder: "products", // папка на Cloudinary
+    folder: "products", // папка в Cloudinary
     allowed_formats: ["jpg", "jpeg", "png"],
   },
 });

@@ -19,7 +19,7 @@ export const getProductById = (req, res) => {
 };
 
 // ➕ Добавить товар с файлом
-export const createProductWithImage = async (req, res) => {
+export const createProductWithImage = (req, res) => {
   try {
     console.log("req.file:", req.file);
     console.log("req.body:", req.body);
@@ -28,8 +28,7 @@ export const createProductWithImage = async (req, res) => {
       return res.status(400).json({ message: "Файл обязателен" });
     }
 
-    // Ссылка на файл на сервере
-    const Product_image_url = `/uploads/${req.body.Product_category}/${req.file.filename}`;
+    const Product_image_url = req.file.path; // Cloudinary возвращает URL
 
     const query = `
       INSERT INTO products 
@@ -55,12 +54,12 @@ export const createProductWithImage = async (req, res) => {
         res.json({
           message: "Товар добавлен",
           id: result.insertId,
-          image: Product_image_url
+          image: Product_image_url,
         });
       }
     );
   } catch (err) {
-    console.error("Ошибка контроллера:", err);
+    console.error(err);
     res.status(500).json({ message: "Ошибка сервера", error: err.message });
   }
 };
