@@ -20,9 +20,8 @@ export const getProductById = (req, res) => {
 
 // ➕ Добавить товар с файлом
 export const createProductWithImage = (req, res) => {
-  console.log("Cloud name:", process.env.CLOUDINARY_CLOUD_NAME);
-  console.log("API key:", process.env.CLOUDINARY_API_KEY);
-  console.log("API secret:", process.env.CLOUDINARY_API_SECRET);
+  console.log("Контроллер сработал");  // <- этот лог точно должен быть виден
+  console.log("Переменные:", process.env.CLOUDINARY_CLOUD_NAME, process.env.CLOUDINARY_API_KEY);
 
   try {
     console.log("req.file:", req.file);
