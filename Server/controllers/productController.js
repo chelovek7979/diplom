@@ -22,12 +22,13 @@ export const getProductById = (req, res) => {
 
 // ➕ Добавить товар
 export const createProductWithImage = (req, res) => {
-  console.log("Файл пришёл:", req.file); // здесь будет объект файла
-  console.log("Категория:", req.body.Product_category); // здесь будет категория
+  console.log("Файл пришёл:", req.file); // объект файла от Cloudinary
+  console.log("Категория:", req.body.Product_category);
 
   if (!req.file) return res.status(400).json({ message: "Файл обязателен" });
 
-  const Product_image_url = `/uploads/${req.body.Product_category}/${req.file.filename}`;
+  // Ссылка на файл в Cloudinary
+  const Product_image_url = req.file.path;
 
   const query = `
     INSERT INTO products 
@@ -41,7 +42,7 @@ export const createProductWithImage = (req, res) => {
       req.body.Product_title,
       req.body.Product_description,
       req.body.Product_price,
-      Product_image_url,
+      Product_image_url,           // сохраняем ссылку на Cloudinary
       req.body.Product_category,
       req.body.product_count,
     ],
@@ -50,7 +51,11 @@ export const createProductWithImage = (req, res) => {
         console.error(err);
         return res.status(500).json({ message: "Ошибка базы данных" });
       }
-      res.json({ message: "Товар добавлен", id: result.insertId, image: Product_image_url });
+      res.json({ 
+        message: "Товар добавлен", 
+        id: result.insertId, 
+        image: Product_image_url  // возвращаем URL для фронта
+      });
     }
   );
 };

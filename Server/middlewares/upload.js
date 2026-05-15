@@ -1,23 +1,13 @@
+// Server/middleware/upload.js
 import multer from "multer";
-import path from "path";
-import fs from "fs";
+import { CloudinaryStorage } from "multer-storage-cloudinary";
+import cloudinary from "../config/cloudinary.js"; // твоя конфигурация Cloudinary
 
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    
-    const category = req.body.Product_category;
-    const uploadPath = path.join(__dirname, "..", "uploads", category);
-
-    // Если папки категории нет, создаем
-    if (!fs.existsSync(uploadPath)) {
-      fs.mkdirSync(uploadPath, { recursive: true });
-    }
-
-    cb(null, uploadPath);
-  },
-  filename: (req, file, cb) => {
-    const uniqueSuffix = Date.now() + "-" + Math.round(Math.random() * 1e9);
-    cb(null, uniqueSuffix + path.extname(file.originalname));
+const storage = new CloudinaryStorage({
+  cloudinary: cloudinary,
+  params: {
+    folder: "products", // папка на Cloudinary
+    allowed_formats: ["jpg", "jpeg", "png"],
   },
 });
 
