@@ -6,7 +6,7 @@ import '../Tab-section/Tabs_style.scss'
     export default function Tab_section({ setCategory, category }){
     
     const tabs = [
-        { label: 'Электроника', value: 'electronics' },
+        { label: 'Четырехклапанные', value: 'electronics' },
         { label: 'Инструмент', value: 'tool' },
         { label: 'Кухня', value: 'kitchen_items' },
         { label: 'Спорт', value: 'sport' },
