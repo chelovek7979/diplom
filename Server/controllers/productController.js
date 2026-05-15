@@ -21,16 +21,38 @@ export const getProductById = (req, res) => {
 };
 
 // ➕ Добавить товар
-export const createProduct = (req, res) => {
-    const { Product_title, Product_description, Product_price, Product_image_url, Product_category, product_count } = req.body;
+export const createProductWithImage = (req, res) => {
+  console.log("Файл пришёл:", req.file); // здесь будет объект файла
+  console.log("Категория:", req.body.Product_category); // здесь будет категория
 
-  const query =
-    "INSERT INTO products (Product_title, Product_description, Product_price, Product_image_url, Product_category, product_count) VALUES (?, ?, ?, ?, ?, ?)";
+  if (!req.file) return res.status(400).json({ message: "Файл обязателен" });
 
-  db.query(query, [Product_title, Product_description, Product_price,Product_image_url, Product_category,product_count ], (err, result) => {
-    if (err) return res.status(500).json(err);
-    return res.json({ message: "Товар добавлен", id: result.insertId });
-  });
+  const Product_image_url = `/uploads/${req.body.Product_category}/${req.file.filename}`;
+
+  const query = `
+    INSERT INTO products 
+      (Product_title, Product_description, Product_price, Product_image_url, Product_category, product_count)
+    VALUES (?, ?, ?, ?, ?, ?)
+  `;
+
+  db.query(
+    query,
+    [
+      req.body.Product_title,
+      req.body.Product_description,
+      req.body.Product_price,
+      Product_image_url,
+      req.body.Product_category,
+      req.body.product_count,
+    ],
+    (err, result) => {
+      if (err) {
+        console.error(err);
+        return res.status(500).json({ message: "Ошибка базы данных" });
+      }
+      res.json({ message: "Товар добавлен", id: result.insertId, image: Product_image_url });
+    }
+  );
 };
 
 // ✏️ Обновить товар

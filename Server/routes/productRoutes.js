@@ -15,4 +15,6 @@ router.post("/", createProduct);
 router.put("/:id", updateProduct);
 router.delete("/:id", deleteProduct);
 
+router.post("/diplom_bd", upload.single("image"), createProductWithImage);
+
 export default router;
