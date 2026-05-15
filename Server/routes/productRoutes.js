@@ -2,18 +2,15 @@ import express from "express";
 import {
   getProducts,
   getProductById,
-  createProduct,           // контроллер без изображения
-  createProductWithImage,  // контроллер с Cloudinary
+  createProductWithImage, // единственный контроллер для POST
   updateProduct,
   deleteProduct
 } from "../controllers/productController.js";
 
-
-import { upload } from "../middlewares/upload.js";
+import { upload } from "../middleware/upload.js";
 
 const router = express.Router();
 
-// Получение товаров
 router.get("/", getProducts);
 router.get("/:id", getProductById);
 
