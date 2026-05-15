@@ -62,6 +62,9 @@ export const createProductWithImage = (req, res) => {
     console.error(err);
     res.status(500).json({ message: "Ошибка сервера", error: err.message });
   }
+  console.log("Cloud name:", process.env.CLOUDINARY_CLOUD_NAME);
+console.log("API key:", process.env.CLOUDINARY_API_KEY);
+console.log("API secret:", process.env.CLOUDINARY_API_SECRET);
 };
 
 // ✏️ Обновить товар
