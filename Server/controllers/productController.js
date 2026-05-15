@@ -21,7 +21,7 @@ export const getProductById = (req, res) => {
 };
 
 // ➕ Добавить товар
-export const createProductWithImage = (req, res) => {
+
   export const createProductWithImage = async (req, res) => {
   try {
     console.log("req.file:", req.file);
@@ -66,7 +66,7 @@ export const createProductWithImage = (req, res) => {
       });
     }
   );
-};
+
 
 // ✏️ Обновить товар
 export const updateProduct = (req, res) => {
