@@ -9,7 +9,7 @@ import '../Tab-section/Tabs_style.scss'
         { label: 'Четырехклапанные', value: 'fourclan' },
         { label: 'Для почты', value: 'mail' },
         { label: 'Большие', value: 'big' },
-        { label: 'Обувные', value: 'shoe ' },
+        { label: 'Обувные', value: 'shoe' },
         { label: 'Архивные', value: 'archive' },
     ];
 

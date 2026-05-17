@@ -24,17 +24,17 @@ export default function AdminPanel() {
                 >
                     Изменить товар
                 </button>
-                <button 
+{/*                 <button 
                     className={activeSection === "users" ? "active" : ""} 
                     onClick={() => setActiveSection("users")}
                 >
                     Пользователи
-                </button>
+                </button> */}
                 <button 
                     className={activeSection === "settings" ? "active" : ""} 
                     onClick={() => setActiveSection("settings")}
                 >
-                    Настройки
+                    Статистика продаж
                 </button>
             </aside>
 

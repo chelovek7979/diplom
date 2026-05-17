@@ -183,6 +183,11 @@ svg * {
     background-color: var(--color-orange);
     color: var(--color--black);
   }
+    @media (max-width: 576px) {
+      max-width: 300px;
+      
+      
+  }
 }
 
 /**

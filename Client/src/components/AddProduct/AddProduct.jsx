@@ -120,6 +120,7 @@ export default function AddProduct() {
 
       {/* Поле для загрузки файла */}
       <input
+      className="setFile"
         id="imageInput"
         type="file"
         accept="image/*"

@@ -3,9 +3,9 @@ import ReviewsCarousel from './ReviewsCarousel';
 import image from  '../../assets/bg_photo.jpg'
 
 import image_logo_1 from '../../assets/Acron.svg.png'
-import image_logo_2 from '../../assets/Alfa_Group.svg.png'
-import image_logo_3 from '../../assets/Bubble_Comics.svg.png'
-import image_logo_4 from '../../assets/Etalon_Logo.png'
+import image_logo_2 from '../../assets/Atkins-logo-500x281.png'
+import image_logo_3 from '../../assets/Allegro-Logo-500x313.png'
+import image_logo_4 from '../../assets/Loci-Logo-500x281.png'
 
 export default function Landing(){
  const instructions = [
@@ -100,7 +100,7 @@ const reviews = [
   <div className="map-container">
     <iframe
       title="Карта ПетроКартон"
-      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1995.123456789!2d30.068123!3d59.537890!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xabcdef1234567890!2z0JLRg9C70LXQvdC40YHRgtC40Lkg0JrQsNGP0LDQvCDQmNC-0YHQutCw0Y8g0JrQsNGB0LrQvtC70YzRltGMINCw0LvRjNC90LAg0JTQvtCz0LjQvdGC0LLRgdC60Lgg0L7QtNC-0YHQutCw0Y8!5e0!3m2!1sru!2sru!4v1699999999999!5m2!1sru!2sru"
+      src="https://yandex.ru/map-widget/v1/?um=constructor%3A35b7f1488c56c4a7283085f173a0f3adabb7dafce6a0d9d88924b9719de8a596&amp;source=constructor"
       width="100%"
       height="450"
       style={{ border: 0 }}
