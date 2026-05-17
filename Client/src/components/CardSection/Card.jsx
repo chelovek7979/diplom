@@ -25,9 +25,13 @@ export default function Card({ product }) {
         <div className="Card">
             <div className="wrapper">
                 <div className="card-photo">
-                    <img
+                     <img
                         src={`https://diplom-1-54sb.onrender.com/uploads/${product.Product_image_url}`}
                         alt={product.Product_title}
+                        onError={(e) => {
+                        e.currentTarget.onerror = null; // чтобы не зациклить
+                        e.currentTarget.src = product.Product_image_url; // fallback на Cloudinary
+                        }}
                     />
                 </div>
 
