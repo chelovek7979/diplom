@@ -45,17 +45,18 @@ export default function AddProduct() {
 
     try {
       for (let pair of formData.entries()) {
-  console.log(pair[0], pair[1]);
+      console.log(pair[0], pair[1]);
 }
       const res = await fetch("https://diplom-1-54sb.onrender.com/api/diplom_bd", {
         method: "POST",
         body: formData, // Content-Type будет автоматически multipart/form-data
       });
+      
       if (!res.ok) {
-  const text = await res.text(); // читаем тело ошибки как текст
-  console.error("Ошибка сервера:", text);
-  alert("Ошибка при добавлении товара. Проверьте консоль.");
-  return;
+        const text = await res.text(); // читаем тело ошибки как текст
+        console.error("Ошибка сервера:", text);
+        alert("Ошибка при добавлении товара. Проверьте консоль.");
+        return;
 }
 
       const data = await res.json();
