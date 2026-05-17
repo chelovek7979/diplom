@@ -16,12 +16,9 @@ router.get("/:id", getProductById);
 
 // Создание товара с изображением
 
+router.post("/", upload.single("image"), createProductWithImage);
 
 
-router.post("/diplom_bd", upload.single("image"), (req, res, next) => {
-  console.log("req.file в промежуточке:", req.file);
-  next();
-}, createProductWithImage);
 
 // Обновление и удаление
 router.put("/:id", updateProduct);

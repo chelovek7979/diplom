@@ -22,7 +22,11 @@ app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
 // Роуты
 app.use("/api/users", userRoutes);
-app.use("/api/diplom_bd", productRoutes);
+app.use("/api/diplom_bd", productRoutes); // полный путь → /api/diplom_bd
+
+
+
+
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
@@ -31,4 +35,5 @@ app.listen(PORT, () => {
   console.log("Cloud name:", process.env.CLOUDINARY_CLOUD_NAME);
   console.log("API key:", process.env.CLOUDINARY_API_KEY);
   console.log("API secret:", process.env.CLOUDINARY_API_SECRET);
+  console.log("проврека на ласт изменения");
 });
