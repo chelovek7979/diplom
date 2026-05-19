@@ -3,6 +3,7 @@ import Card from "./Card";
 import "./CardSection.scss";
 
 export default function CardSection({category}) {
+    
     const [data, setData] = useState([]);
    
 
