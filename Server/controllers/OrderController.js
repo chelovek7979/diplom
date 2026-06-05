@@ -1,56 +1,36 @@
 import { db } from "../db.js";
 
-export const OrderController = {
-    async create(req, res) {
-        try {
-            const { totalSum, items } = req.body;
+export const createOrder = (req,res) =>{
+    const{
+        total_sum,
+        created_at,
+        user_login,
+        user_full_name,
+        user_number,
+        discont,
+        user_id,
+        items_count
+    } = req.body
 
-            const [orderResult] = await db.query(
-                `
-                INSERT INTO orders
-                (total_sum, created_at)
-                VALUES (?, NOW())
-                `,
-                [totalSum]
-            );
+    const status = 'paid'
+    const payment_method = 'mir'
 
-            const orderId = orderResult.insertId;
-
-            for (const item of items) {
-                await db.query(
-                    `
-                    INSERT INTO order_items
-                    (
-                        order_id,
-                        product_id,
-                        product_title,
-                        price,
-                        quantity
-                    )
-                    VALUES (?, ?, ?, ?, ?)
-                    `,
-                    [
-                        orderId,
-                        item.productId,
-                        item.title,
-                        item.price,
-                        item.quantity
-                    ]
-                );
-            }
-
-            res.json({
-                success: true,
-                orderId
-            });
-
-        } catch (error) {
-            console.error(error);
-
-            res.status(500).json({
-                success: false,
-                message: error.message
-            });
+    db.query (query,(
+        total_sum,
+        created_at,
+        user_login,
+        user_full_name,
+        user_number,
+        discont,
+        user_id,
+        items_count
+    ),(err,data) =>{
+        if(err){
+            return res.status(500).json(err)
         }
-    }
-};
+
+        return res.json({
+            message: "Оплата прошла успешно"
+        })
+    })
+}

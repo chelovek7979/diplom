@@ -7,7 +7,7 @@ import cors from "cors";
 import dotenv from "dotenv";
 
 
-import orderRoutes from "./routes/routes/orderRoutes.js";
+import orderRoutes from "./routes/orderRoutes.js";
 
 
 
@@ -35,9 +35,6 @@ app.use("/api/diplom_bd", productRoutes); // полный путь → /api/dipl
 
 app.use("/api/orders", orderRoutes);
 
-app.get("/", (req, res) => {
-  res.send("Server works");
-});
 
 
 
