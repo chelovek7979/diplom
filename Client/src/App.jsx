@@ -13,62 +13,66 @@ import ContactInfo from './components/Landing/ContactInfo'
 import AdminPanel from './components/AdminPanel/adminPanel'
 import LoginModal from './components/Modal/Modal'
 
+import Login from './components/pages/login'
+import Register from './components/pages/register'
+
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+
 function App() {
-
-  const [market, bascket] = useState('market')
+  const [market, bascket] = useState("market");
   
-  const [showLogin, setShowLogin] = useState(false)
+    const [user, setUser] = useState(
+      JSON.parse(localStorage.getItem("user"))
+    );
 
-  const [isAdmin, setIsAdmin] = useState(false)
-
-  
-
-  const handleLogout = () => {
-  setIsAdmin(false)
-}
-
+const user_role = user?.role;
   
 
-  return (
-  <CartProvider>
-    <Header
-      bascket={bascket}
-      openLogin={() => setShowLogin(true)}
-    />
-    
-
-    {isAdmin ? (
-      <>
-        <button
-          onClick={() => setIsAdmin(false)}
-          className='exitButtom'
-        >
-          Выйти из панели администратора 
-        </button>
-
-        <AdminPanel />
-      </>
-    ) : (
-      
-      <>
-        {market === 'market' && <Catalog />}
-        {market === 'basket' && <Bascket />}
-        {market === 'landing' && <Landing />}
-        {market === 'contact' && <ContactInfo />}
+return (
+    <BrowserRouter>
+      <CartProvider>
         
-      </>
-    )}
 
-    {showLogin && (
-      <LoginModal
-        close={() => setShowLogin(false)}
-        setAdmin={setIsAdmin}
-      />
-    )}
-    
-  </CartProvider>
-  
-)
+        <Routes>
+
+          <Route path="/login" element={<Login setUser={setUser} />}/>
+          <Route path="/register" element={<Register  />}/>
+
+          <Route path="/" element={
+    <>
+      <Header bascket={bascket} />
+
+      {user_role === 'admin' ? (
+        <>
+          <button
+            onClick={() => {
+              localStorage.removeItem('user');
+              window.location.reload();
+            }}
+            className="exitButtom"
+          >
+            Выйти из панели администратора
+          </button>
+
+          <AdminPanel />
+        </>
+      ) : (
+        <>
+          {market === "market" && <Catalog />}
+          {market === "basket" && <Bascket />}
+          {market === "landing" && <Landing />}
+          {market === "contact" && <ContactInfo />}
+        </>
+      )}
+    </>
+  }
+/>
+
+        </Routes>
+
+      </CartProvider>
+    </BrowserRouter>
+  );
 }
 
-export default App
+export default App;

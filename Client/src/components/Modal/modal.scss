@@ -3,27 +3,37 @@
 @import '../../assets/Font/Font.css';
 
 
-.modal{
- position: fixed;   
- top: 50%;
- left: 50%;
- min-width: 820px;
- translate: -50% -50%;
- background: linear-gradient(
-  135deg,
-  var(--color-orange) 0%,
-  color-mix(in srgb, #ff6b35 95%, black 5%) 100%
-);
-box-shadow: 0 25 50 rgba(0, 0, 0, 0.3), 0 0 0 1 rgba(255, 255, 255, 0.1) inset;
-backdrop-filter: blur(10);
-border: 1px solid black;
- padding: rem(50) rem(60);
- 
- border-radius: rem(20);
- color: var(--color-white);
- font-family: "AnyConv",sans-serif;
- display: flex;
- z-index: 2;
+.modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  translate: -50% -50%;
+font-family: "AnyConv",sans-serif;
+  min-width: 900px;
+
+  background: rgba(255, 255, 255, 0.12);
+
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+
+  border: 1px solid rgba(255, 255, 255, 0.25);
+
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.25),
+    inset 0 1px 1px rgba(255, 255, 255, 0.2);
+
+  border-radius: rem(20);
+
+  padding: rem(50) rem(60);
+
+  color: white;
+  display: flex;
+  gap: 40px;
+
+  overflow: hidden;
+
+  z-index: 100;
+
 
  .modal-content{
    display: flex;
@@ -45,23 +55,60 @@ border: 1px solid black;
        height: rem(40);
        border-radius: rem(5);
     }
+    .field{
+      display: flex;
+      flex-direction: column;
+      width: 400px;
+    }
+    .login-btn-section{
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+    }
+    .btn{
+      background-color: black;
+    color: rgb(255, 255, 255);
+    border: none;
+    border-radius: 0.3125rem;
+    height: 40px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 400px;
+    text-decoration: none;
+      }
+      .green{
+         background-color: green;
+         border: 1px solid black;
+         box-shadow: 3px 3px 3px black;
+      }
+      .blue{
+         background-color: rgb(24, 106, 194);
+         border: 1px solid black;
+         box-shadow: 3px 3px 3px black;
+      }
+      
+    }
    
 
  }
 img{
    width: 50%;
+   display: block;
    margin-left: auto;
+   
 }
 
-}
-   @media (max-width: 768px) {
+
+   @media (max-width: 936px) {
       .modal{
          position: fixed;   
          top: 50%;
          left: 50%;
          min-width: auto;
          translate: -50% -50%;
-         background-color: var(--color-orange) ;
+         
          padding: rem(50) ;
          border-radius: rem(20);
          color: var(--color-white);
@@ -75,3 +122,9 @@ img{
   }
 
 }
+
+.img-gear{
+  height: 100%;
+  margin: auto;
+}
+

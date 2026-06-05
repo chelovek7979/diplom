@@ -1,13 +1,19 @@
 import { useState } from 'react'
 import './modal.scss'
 import gears from '../../../src/assets/gears.png'
+import { Link,useNavigate } from 'react-router-dom'
 
-function LoginModal({ close, setAdmin }) {
+
+
+
+function LoginModal({ setUser}) {
 
   const [login, setLogin] = useState('')
   const [password, setPassword] = useState('')
+  const nav = useNavigate()
 
-  const handleLogin = async () => {
+  const handleLogin = async (e) => {
+    e.preventDefault()
 
     try {
 
@@ -29,9 +35,13 @@ function LoginModal({ close, setAdmin }) {
 
       if (response.ok) {
 
-        setAdmin(true)
+      localStorage.setItem(
+        "user",
+        JSON.stringify(data.user)
+      );
 
-        close()
+      setUser(data.user);nav('/')
+      
 
       } else {
 
@@ -51,28 +61,36 @@ function LoginModal({ close, setAdmin }) {
 
       <div className="modal-content">
 
-        <h2>Вход администратора</h2>
+        <h2>Вход </h2>
+        <form  onSubmit={handleLogin}>
 
-        <input
-          type="text"
-          placeholder="Логин"
-          onChange={(e) => setLogin(e.target.value)}
-        />
+          <div className='login-field field'>
+            <label htmlFor="">Введите Логин</label>
+            <input
+              type="text"
+              placeholder="Логин"
+              onChange={(e) => setLogin(e.target.value)}
+            />
 
-        <input
-          type="password"
-          placeholder="Пароль"
-          onChange={(e) => setPassword(e.target.value)}
-        />
+          </div>
 
-        <button onClick={handleLogin}>
-          Войти
-        </button>
+          <div className='password-field field'>
+            <label htmlFor="">Введиете пароль</label>
+            <input
+              type="password"
+              placeholder="Пароль"
+              onChange={(e) => setPassword(e.target.value)}
+            />
+          </div>
 
-        <button onClick={close}>
-          Закрыть
-        </button>
-
+          <div className='login-btn-section '>
+            <button type='submit' className='green btn'>
+              Войти
+            </button>
+            <Link to='/register' className='btn blue' >Зарегистрироваться</Link>
+            <Link to='/' className='btn' >Вернуться на главную</Link>
+          </div>
+        </form>
       </div>
       <img src={gears} alt="" />
 

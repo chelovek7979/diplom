@@ -27,10 +27,10 @@ export default function BasketTable() {
 
     try {
         // Имитация оплаты
-        await new Promise(resolve => setTimeout(resolve, 1500));
+        
 
         const response = await fetch(
-            "https://diplom-1-54sb.onrender.com/api/orders",
+            "https://diplom-1-54sb.onrender.com/api/orders/create",
             {
                 method: "POST",
                 headers: {

@@ -35,6 +35,10 @@ app.use("/api/diplom_bd", productRoutes); // полный путь → /api/dipl
 
 app.use("/api/orders", orderRoutes);
 
+app.get("/", (req, res) => {
+  res.send("Server works");
+});
+
 
 
 
