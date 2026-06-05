@@ -1,12 +1,13 @@
 import { useCart } from "../Card-contecst/CartProvider";
 import { useMemo } from "react";
+import { useNavigate } from "react-router-dom"; // <-- добавляем
 import './Bascket.scss'
 
 export default function BasketTable() {
-  const { cart, updateCart } = useCart();
+  const { cart, updateCart, clearCart } = useCart();
+  const navigate = useNavigate(); // <-- для перенаправления
   const items = Object.values(cart);
 
-  // Подсчет общей суммы с учетом скидки
   const totalSum = useMemo(() => {
     return items.reduce((sum, { product, count }) => {
       const pricePerUnit = count > 100 ? product.Product_price * 0.9 : product.Product_price;
@@ -14,21 +15,60 @@ export default function BasketTable() {
     }, 0);
   }, [items]);
 
-  const handlePayment = async () => {
+const handlePayment = async () => {
+    const userRaw = localStorage.getItem("user");
+
+    let user = null;
+
+    try {
+        user = JSON.parse(userRaw);
+    } catch {
+        user = null;
+    }
+
+    // 1️⃣ Если пользователь не авторизован
+    if (!user) {
+        const goRegister = window.confirm(
+            "Вы не авторизованы. Чтобы продолжить оплату, нужно зарегистрироваться. Перейти на страницу регистрации?"
+        );
+
+        if (goRegister) {
+            localStorage.removeItem("cart");
+            updateCart({}, 0);
+            navigate("/register");
+        }
+
+        return;
+    }
+
+    // 2️⃣ Подтверждение оплаты суммы
+    const confirmPay = window.confirm(
+        `Подтвердите оплату на сумму ${totalSum.toFixed(2)} ₽`
+    );
+
+    if (!confirmPay) return;
+
+    const itemsCount = items.reduce(
+        (sum, item) => sum + item.count,
+        0
+    );
+
+    const hasDiscount = items.some(
+        item => item.count > 100
+    );
+
     const orderData = {
-        totalSum,
-        items: items.map(({ product, count }) => ({
-            productId: product.idProduct,
-            title: product.Product_title,
-            price: product.Product_price,
-            quantity: count
-        }))
+        total_sum: totalSum,
+        created_at: new Date().toISOString().slice(0, 19).replace("T", " "),
+        user_login: user.login,
+        user_full_name: user.full_name,
+        user_number: user.phone,
+        discont: hasDiscount ? "10%" : "0%",
+        user_id: user.idUsers,
+        items_count: itemsCount
     };
 
     try {
-        // Имитация оплаты
-        
-
         const response = await fetch(
             "https://diplom-1-54sb.onrender.com/api/orders/create",
             {
@@ -42,63 +82,66 @@ export default function BasketTable() {
 
         const result = await response.json();
 
-        alert("Оплата прошла успешно!");
+        if (!response.ok) {
+            throw new Error(result.message || "Ошибка оплаты");
+        }
+
+        alert("Оплата прошла успешно");
+
         console.log(result);
+        clearCart();
+        
 
     } catch (error) {
         console.error(error);
-        alert("Ошибка оплаты");
+        alert(error.message || "Ошибка оплаты");
     }
 };
 
-
-
-
   return (
     <>
-    <table>
-      <thead>
-        <tr>
-          <th>Товар</th>
-          <th>Цена</th>
-          <th>Количество</th>
-          <th>Сумма</th>
-        </tr>
-      </thead>
+      <table>
+        <thead>
+          <tr>
+            <th>Товар</th>
+            <th>Цена</th>
+            <th>Количество</th>
+            <th>Сумма</th>
+          </tr>
+        </thead>
 
-      <tbody>
-        {items.map(({ product, count }) => {
-          const pricePerUnit = count > 100 ? product.Product_price * 0.9 : product.Product_price;
-          const total = pricePerUnit * count;
+        <tbody>
+          {items.map(({ product, count }) => {
+            const pricePerUnit = count > 100 ? product.Product_price * 0.9 : product.Product_price;
+            const total = pricePerUnit * count;
 
-          return (
-            <tr key={product.idProduct}>
-              <td data-label="Товар">{product.Product_title}</td>
-              <td data-label="Цена">
-                {pricePerUnit.toFixed(2)} ₽
-                {count > 100 && <span className="discount"> (скидка 10%)</span>}
-              </td>
-              <td data-label="Количество">
-                <button onClick={() => updateCart(product, count - 1)}>-</button>
-                {count}
-                <button onClick={() => updateCart(product, count + 1)}>+</button>
-              </td>
-              <td data-label="Сумма">{total.toFixed(2)} ₽</td>
-            </tr>
-          );
-        })}
+            return (
+              <tr key={product.idProduct}>
+                <td data-label="Товар">{product.Product_title}</td>
+                <td data-label="Цена">
+                  {pricePerUnit.toFixed(2)} ₽
+                  {count > 100 && <span className="discount"> (скидка 10%)</span>}
+                </td>
+                <td data-label="Количество">
+                  <button onClick={() => updateCart(product, count - 1)}>-</button>
+                  {count}
+                  <button onClick={() => updateCart(product, count + 1)}>+</button>
+                </td>
+                <td data-label="Сумма">{total.toFixed(2)} ₽</td>
+              </tr>
+            );
+          })}
 
-        {/* Итоговая строка */}
-        <tr className="total-row">
-          <td data-label="Итого" colSpan="3">Общая сумма:</td>
-          <td data-label="Сумма" className="total">{totalSum.toFixed(2)} ₽</td>
-        </tr>
-      </tbody>
-    </table>
-    <button onClick={handlePayment}>
+          <tr className="total-row">
+            <td data-label="Итого" colSpan="3">Общая сумма:</td>
+            <td data-label="Сумма" className="total">{totalSum.toFixed(2)} ₽</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <button onClick={handlePayment} disabled={items.length === 0}>
         Оплатить
-    </button>
+      </button>
     </>
-    
   );
 }

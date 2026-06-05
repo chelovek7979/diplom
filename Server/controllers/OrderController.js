@@ -45,3 +45,20 @@ export const createOrder = (req, res) => {
         });
     });
 };
+
+
+export const getStats = (req, res) => {
+    const q = `
+        SELECT 
+            COUNT(*) AS total_orders,
+            SUM(total_sum) AS total_revenue,
+            AVG(total_sum) AS avg_check
+        FROM orders
+    `;
+
+    db.query(q, (err, data) => {
+        if (err) return res.status(500).json(err);
+
+        return res.json(data[0]);
+    });
+};
