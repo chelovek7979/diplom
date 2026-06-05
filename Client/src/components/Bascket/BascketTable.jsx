@@ -14,7 +14,48 @@ export default function BasketTable() {
     }, 0);
   }, [items]);
 
+  const handlePayment = async () => {
+    const orderData = {
+        totalSum,
+        items: items.map(({ product, count }) => ({
+            productId: product.idProduct,
+            title: product.Product_title,
+            price: product.Product_price,
+            quantity: count
+        }))
+    };
+
+    try {
+        // Имитация оплаты
+        await new Promise(resolve => setTimeout(resolve, 1500));
+
+        const response = await fetch(
+            "https://diplom-1-54sb.onrender.com/api/orders",
+            {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(orderData)
+            }
+        );
+
+        const result = await response.json();
+
+        alert("Оплата прошла успешно!");
+        console.log(result);
+
+    } catch (error) {
+        console.error(error);
+        alert("Ошибка оплаты");
+    }
+};
+
+
+
+
   return (
+    <>
     <table>
       <thead>
         <tr>
@@ -54,5 +95,10 @@ export default function BasketTable() {
         </tr>
       </tbody>
     </table>
+    <button onClick={handlePayment}>
+        Оплатить
+    </button>
+    </>
+    
   );
 }

@@ -33,7 +33,7 @@ export const createProductWithImage = (req, res) => {
 
     const query = `
       INSERT INTO products 
-        (Product_title, Product_description, Product_price, Product_image_url, Product_category, product_count)
+        (Product_title, Product_description, Product_price, Product_image_url, Product_category, prodсщтвййцвйцвйuct_count)
       VALUES (?, ?, ?, ?, ?, ?)
     `;
 

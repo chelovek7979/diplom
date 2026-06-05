@@ -6,6 +6,13 @@ import userRoutes from "./routes/userRoutes.js";
 import cors from "cors";
 import dotenv from "dotenv";
 
+
+import orderRoutes from "./routes/routes/orderRoutes.js";
+
+
+
+
+
 dotenv.config(); // загружает переменные из .env
 
 const app = express();
@@ -24,6 +31,9 @@ app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 app.use("/api/users", userRoutes);
 app.use("/api/diplom_bd", productRoutes); // полный путь → /api/diplom_bd
 
+
+
+app.use("/api/orders", orderRoutes);
 
 
 
