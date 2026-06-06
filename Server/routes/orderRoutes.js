@@ -1,9 +1,21 @@
 import { Router } from "express";
-import { createOrder,getStats } from "../controllers/OrderController.js";
+import { createOrder } from "../controllers/OrderController.js";
+import { getGeneralStats, getDailySales, getTopUsers, getOrdersByDate } from "../controllers/OrderController.js";
 
 const router = Router();
 
 router.post("/create", createOrder);
-router.get("/getStats", getStats);
+
+
+router.get("/general", getGeneralStats);
+router.get("/daily-sales", getDailySales);
+router.get("/top-users", getTopUsers);
+router.get("/by-date", getOrdersByDate);
+
+
+
+
+
+
 
 export default router;

@@ -3,6 +3,7 @@ import "./AdminPanel.scss";
 import AddProduct from '../AddProduct/AddProduct'
 import EditProduct from "../ChangeProduct/ChangeProduct";
 import ChangePanel from "../ChangeProduct/ChangePanel";
+import Dashboard from "../dashboard/dashbord";
 
 export default function AdminPanel() {
     const [activeSection, setActiveSection] = useState("products");
@@ -63,8 +64,7 @@ export default function AdminPanel() {
                 )}
                 {activeSection === "settings" && (
                     <div className="section">
-                        <h2>Настройки</h2>
-                        <p>Общие настройки магазина.</p>
+                        <Dashboard/>
                     </div>
                 )}
             </main>
