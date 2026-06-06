@@ -107,3 +107,55 @@ export const getOrdersByDate = (req, res) => {
         res.json(result);
     });
 };
+
+// statsController.js или внутри твоего existing controller файла
+
+// 5. Процент заказов со скидкой
+export const getDiscountStats = (req, res) => {
+    const q = `
+        SELECT
+            COUNT(*) AS totalOrders,
+            SUM(CASE WHEN discont != '0%' THEN 1 ELSE 0 END) AS discountOrders
+        FROM orders
+    `;
+    db.query(q, (err, result) => {
+        if (err) return res.status(500).json(err);
+        const total = result[0].totalOrders;
+        const discount = result[0].discountOrders;
+        res.json({
+            total,
+            discount,
+            percent: total > 0 ? ((discount / total) * 100).toFixed(1) : 0
+        });
+    });
+};
+
+// 6. Среднее количество товаров в заказе
+export const getItemsStats = (req, res) => {
+    const q = `
+        SELECT 
+            AVG(items_count) AS avgItems,
+            MAX(items_count) AS maxItems,
+            SUM(items_count) AS totalItems
+        FROM orders
+    `;
+    db.query(q, (err, result) => {
+        if (err) return res.status(500).json(err);
+        res.json(result[0]);
+    });
+};
+
+// 7. Популярный метод оплаты
+export const getPopularPayment = (req, res) => {
+    const q = `
+        SELECT payment_method, COUNT(*) AS total
+        FROM orders
+        GROUP BY payment_method
+        ORDER BY total DESC
+        LIMIT 1
+    `;
+    db.query(q, (err, result) => {
+        if (err) return res.status(500).json(err);
+        res.json(result[0] || { payment_method: "Нет данных", total: 0 });
+    });
+};
