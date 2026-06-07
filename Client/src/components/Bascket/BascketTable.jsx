@@ -15,6 +15,15 @@ export default function BasketTable() {
     }, 0);
   }, [items]);
 
+
+  const outOfStock = items.filter(item => item.count > item.product.Product_count);
+if (outOfStock.length) {
+    alert(`Недостаточно товара: ${outOfStock.map(i => i.product.Product_title).join(', ')}`);
+    return;
+}
+
+
+
 const handlePayment = async () => {
     const userRaw = localStorage.getItem("user");
 
@@ -41,6 +50,8 @@ const handlePayment = async () => {
         return;
     }
 
+    
+
     // 2️⃣ Подтверждение оплаты суммы
     const confirmPay = window.confirm(
         `Подтвердите оплату на сумму ${totalSum.toFixed(2)} ₽`
@@ -65,7 +76,12 @@ const handlePayment = async () => {
         user_number: user.phone,
         discont: hasDiscount ? "10%" : "0%",
         user_id: user.idUsers,
-        items_count: itemsCount
+        items_count: itemsCount,
+
+        items: items.map(item => ({
+        idProduct: item.product.idProduct,
+        count: item.count
+    }))
     };
 
     try {

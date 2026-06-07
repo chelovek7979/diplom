@@ -9,7 +9,8 @@ export const createOrder = (req, res) => {
         user_number,
         discont,
         user_id,
-        items_count
+        items_count,
+        items // ✅ массив товаров из фронта
     } = req.body;
 
     const status = 'paid';
@@ -34,11 +35,32 @@ export const createOrder = (req, res) => {
         payment_method
     ];
 
+    // 1️⃣ Сначала создаём заказ
     db.query(query, values, (err, data) => {
         if (err) {
-            console.error(err); // Добавим вывод ошибки для отладки
+            console.error(err);
             return res.status(500).json(err);
         }
+
+        // 2️⃣ Уменьшаем количество купленных товаров
+        items.forEach(item => {
+            db.query(
+                `
+                UPDATE products
+                SET Product_count = Product_count - ?
+                WHERE idProduct = ?
+                  AND Product_count >= ?
+                `,
+                [item.count, item.idProduct, item.count],
+                (err2, result) => {
+                    if (err2) {
+                        console.error(`Ошибка обновления товара ${item.idProduct}:`, err2);
+                    } else if (result.affectedRows === 0) {
+                        console.warn(`Товар ${item.idProduct} не был списан — недостаточно на складе`);
+                    }
+                }
+            );
+        });
 
         return res.json({
             message: "Оплата прошла успешно"
