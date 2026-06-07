@@ -75,7 +75,7 @@ const handlePayment = async () => {
         user_full_name: user.full_name,
         user_number: user.phone,
         discont: hasDiscount ? "10%" : "0%",
-        user_id: user.idUsers,
+        user_id: user.idUsers, 
         items_count: itemsCount,
 
         items: items.map(item => ({

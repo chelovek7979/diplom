@@ -42,12 +42,12 @@ input {
 
 /* KPI CARD */
 .kpi-card {
-    background: #074eb8;
+    background: #074eb8d4;
     color: white;
     padding: 18px;
     border-radius: 12px;
     text-align: center;
-    box-shadow:  4px 15px rgba(0,0,0,0.15);
+    //box-shadow: 2px 4px 3px rgba(0,0,0,0.15);
 }
 
 /* KPI TITLE */
@@ -68,7 +68,7 @@ input {
     display: flex;
     gap: 10px;
     margin-bottom: 20px;
-    flex-wrap: wrap;
+    //flex-wrap: wrap;
 }
 
 /* INPUT */
@@ -121,4 +121,11 @@ th, td {
     .filter {
         flex-direction: column;
     }
+}
+.text-center{
+    text-align: center;
+    background-color: orange;
+    padding: 5px;
+    border-radius: 10px;
+    color: black;
 }

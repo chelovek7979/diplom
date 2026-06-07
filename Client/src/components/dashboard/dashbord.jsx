@@ -104,7 +104,7 @@ export default function Dashboard() {
 
     return (
         <div className="dashboard">
-            <h2>Дашборд</h2>
+            <h2 className="text-center">Дашборд</h2>
 
             {/* KPI-блоки */}
             <div className="kpi-grid">
@@ -129,7 +129,12 @@ export default function Dashboard() {
             <h3 style={{ marginTop: "40px" }}>Продажи по дням</h3>
             <Line
                 data={{
-                    labels: dailySales.map(d => d.date),
+                    labels: dailySales.map(d =>
+    new Date(d.date).toLocaleDateString('ru-RU', {
+        day: '2-digit',
+        month: '2-digit'
+    })
+),
                     datasets: [
                         {
                             label: "Выручка",
