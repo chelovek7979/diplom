@@ -1,6 +1,7 @@
 import { db } from "../db.js";
 
 export const createOrder = (req, res) => {
+    console.log(req.body);
     const {
         total_sum,
         created_at,
@@ -12,7 +13,7 @@ export const createOrder = (req, res) => {
         items_count,
         items // ✅ массив товаров из фронта
     } = req.body;
-
+console.log(req.body);
     const status = 'paid';
     const payment_method = 'mir';
 
