@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Line } from "react-chartjs-2";
 import "chart.js/auto";
-import './Dashboard.scss'; // подключаем стили
+import './dashboard.scss'; // подключаем стили
 
 export default function Dashboard() {
     const [general, setGeneral] = useState({
