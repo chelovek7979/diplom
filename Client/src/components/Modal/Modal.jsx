@@ -92,7 +92,7 @@ function LoginModal({ setUser}) {
           </div>
         </form>
       </div>
-      <img src={gears} alt="" />
+      <img src={gears} alt="" className='imgg' />
 
     </div>
   )

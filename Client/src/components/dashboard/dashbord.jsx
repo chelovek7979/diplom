@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Line } from "react-chartjs-2";
 import "chart.js/auto";
+import './Dashboard.scss'; // подключаем стили
 
 export default function Dashboard() {
     const [general, setGeneral] = useState({
@@ -8,10 +9,17 @@ export default function Dashboard() {
         totalRevenue: 0,
         avgCheck: 0
     });
+
     const [dailySales, setDailySales] = useState([]);
     const [topUsers, setTopUsers] = useState([]);
-    const [filter, setFilter] = useState({ from: "", to: "" });
     const [filteredOrders, setFilteredOrders] = useState([]);
+    const [filter, setFilter] = useState({ from: "", to: "" });
+
+    const [stats, setStats] = useState({
+        itemsAnalytics: { avgItems: 0, maxItems: 0, totalItems: 0 },
+        discounts: { discountPercent: 0 },
+        popularPayment: "—"
+    });
 
     useEffect(() => {
         fetch("https://diplom-1-54sb.onrender.com/api/orders/general")
@@ -23,6 +31,7 @@ export default function Dashboard() {
                     avgCheck: Number(data.avgCheck || 0)
                 });
             });
+
         fetch("https://diplom-1-54sb.onrender.com/api/orders/daily-sales")
             .then(res => res.json())
             .then(data => {
@@ -34,6 +43,7 @@ export default function Dashboard() {
                     }))
                 );
             });
+
         fetch("https://diplom-1-54sb.onrender.com/api/orders/top-users")
             .then(res => res.json())
             .then(data => {
@@ -45,11 +55,42 @@ export default function Dashboard() {
                     }))
                 );
             });
+
+        fetch("https://diplom-1-54sb.onrender.com/api/orders/items-stats")
+            .then(res => res.json())
+            .then(data => {
+                setStats(prev => ({
+                    ...prev,
+                    itemsAnalytics: {
+                        avgItems: Number(data.avgItems || 0),
+                        maxItems: Number(data.maxItems || 0),
+                        totalItems: Number(data.totalItems || 0)
+                    }
+                }));
+            });
+
+        fetch("https://diplom-1-54sb.onrender.com/api/orders/discount-stats")
+            .then(res => res.json())
+            .then(data => {
+                setStats(prev => ({
+                    ...prev,
+                    discounts: { discountPercent: Number(data.discountPercent || 0) }
+                }));
+            });
+
+        fetch("https://diplom-1-54sb.onrender.com/api/orders/popular-payment")
+            .then(res => res.json())
+            .then(data => {
+                setStats(prev => ({
+                    ...prev,
+                    popularPayment: data?.payment_method || "—"
+                }));
+            });
     }, []);
 
     const fetchFilteredOrders = () => {
         if (!filter.from || !filter.to) return;
-        fetch(`https://diplom-1-54sb.onrender.com/api/orders/by-date?from=${filter.from}&to=${filter.to}`)
+        fetch(`https://diplom-1-54sb.onrender.com/api/orders/orders-by-date?from=${filter.from}&to=${filter.to}`)
             .then(res => res.json())
             .then(data => {
                 setFilteredOrders(
@@ -62,36 +103,30 @@ export default function Dashboard() {
     };
 
     return (
-        <div style={{ padding: "20px", fontFamily: "sans-serif" }}>
-            <h2>📊 Дашборд</h2>
+        <div className="dashboard">
+            <h2>Дашборд</h2>
 
             {/* KPI-блоки */}
-            <div style={{ display: "flex", gap: "20px", marginTop: "20px" }}>
+            <div className="kpi-grid">
                 {[
                     { title: "Заказы", value: general.totalOrders },
-                    { title: "Выручка", value: Number(general.totalRevenue).toFixed(2) + " ₽" },
-                    { title: "Средний чек", value: Number(general.avgCheck).toFixed(2) + " ₽" }
+                    { title: "Выручка", value: Number(general.totalRevenue || 0).toFixed(2) + " ₽" },
+                    { title: "Средний чек", value: Number(general.avgCheck || 0).toFixed(2) + " ₽" },
+                    { title: "Среднее товаров", value: Number(stats.itemsAnalytics.avgItems || 0).toFixed(1) },
+                    { title: "Всего товаров", value: stats.itemsAnalytics.totalItems || 0 },
+                    { title: "Макс товаров", value: stats.itemsAnalytics.maxItems || 0 },
+                    { title: "Заказы со скидкой", value: stats.discounts.discountPercent + "%" },
+                    { title: "Популярная оплата", value: stats.popularPayment }
                 ].map((kpi, idx) => (
-                    <div
-                        key={idx}
-                        style={{
-                            flex: 1,
-                            backgroundColor: "#3b82f6",
-                            color: "#fff",
-                            padding: "20px",
-                            borderRadius: "12px",
-                            textAlign: "center",
-                            boxShadow: "0 4px 15px rgba(0,0,0,0.2)"
-                        }}
-                    >
-                        <h3 style={{ fontSize: "18px", margin: "0 0 10px" }}>{kpi.title}</h3>
-                        <p style={{ fontSize: "28px", margin: 0, fontWeight: "bold" }}>{kpi.value}</p>
+                    <div className="kpi-card" key={idx}>
+                        <div className="kpi-title">{kpi.title}</div>
+                        <div className="kpi-value">{kpi.value}</div>
                     </div>
                 ))}
             </div>
 
             {/* График */}
-            <h3 style={{ marginTop: "40px" }}>Продажи по дням (последние 30 дней)</h3>
+            <h3 style={{ marginTop: "40px" }}>Продажи по дням</h3>
             <Line
                 data={{
                     labels: dailySales.map(d => d.date),
@@ -99,103 +134,56 @@ export default function Dashboard() {
                         {
                             label: "Выручка",
                             data: dailySales.map(d => d.revenue),
-                            borderColor: "blue",
-                            backgroundColor: "rgba(0,0,255,0.2)"
+                            borderColor: "blue"
                         },
                         {
-                            label: "Количество заказов",
+                            label: "Заказы",
                             data: dailySales.map(d => d.ordersCount),
-                            borderColor: "green",
-                            backgroundColor: "rgba(0,255,0,0.2)"
+                            borderColor: "green"
                         }
                     ]
                 }}
             />
 
-            {/* Топ пользователей */}
-            <h3 style={{ marginTop: "40px" }}>Топ пользователей по сумме заказов</h3>
-            <table style={{ width: "100%", borderCollapse: "collapse", marginTop: "10px" }}>
-                <thead>
-                    <tr style={{ backgroundColor: "#f0f0f0" }}>
-                        <th style={{ padding: "10px", textAlign: "left" }}>Пользователь</th>
-                        <th style={{ padding: "10px", textAlign: "left" }}>Всего потрачено</th>
-                        <th style={{ padding: "10px", textAlign: "left" }}>Количество заказов</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {topUsers.map(u => (
-                        <tr key={u.user_login} style={{ borderBottom: "1px solid #ddd" }}>
-                            <td style={{ padding: "10px" }}>{u.user_login}</td>
-                            <td style={{ padding: "10px" }}>{Number(u.totalSpent).toFixed(2)} ₽</td>
-                            <td style={{ padding: "10px" }}>{u.ordersCount}</td>
-                        </tr>
-                    ))}
-                </tbody>
-            </table>
-
-            {/* Фильтр заказов */}
-            <h3 style={{ marginTop: "40px" }}>Фильтр заказов по дате</h3>
-            <div style={{ marginBottom: "20px", display: "flex", alignItems: "center", gap: "10px" }}>
+            {/* Фильтр */}
+            <h3 style={{ marginTop: "40px" }}>Фильтр заказов</h3>
+            <div className="filter">
                 <input
                     type="date"
                     value={filter.from}
                     onChange={e => setFilter({ ...filter, from: e.target.value })}
-                    style={{
-                        padding: "8px 12px",
-                        borderRadius: "8px",
-                        border: "1px solid #ccc",
-                        outline: "none",
-                        fontSize: "14px"
-                    }}
                 />
                 <input
                     type="date"
                     value={filter.to}
                     onChange={e => setFilter({ ...filter, to: e.target.value })}
-                    style={{
-                        padding: "8px 12px",
-                        borderRadius: "8px",
-                        border: "1px solid #ccc",
-                        outline: "none",
-                        fontSize: "14px"
-                    }}
                 />
-                <button
-                    onClick={fetchFilteredOrders}
-                    style={{
-                        padding: "8px 16px",
-                        borderRadius: "8px",
-                        border: "none",
-                        backgroundColor: "#3b82f6",
-                        color: "#fff",
-                        cursor: "pointer",
-                        fontWeight: "bold"
-                    }}
-                >
-                    Применить
-                </button>
+                <button onClick={fetchFilteredOrders}>Применить</button>
             </div>
 
-            <table style={{ width: "100%", borderCollapse: "collapse" }}>
-                <thead>
-                    <tr style={{ backgroundColor: "#f0f0f0" }}>
-                        <th style={{ padding: "10px", textAlign: "left" }}>ID</th>
-                        <th style={{ padding: "10px", textAlign: "left" }}>Пользователь</th>
-                        <th style={{ padding: "10px", textAlign: "left" }}>Сумма</th>
-                        <th style={{ padding: "10px", textAlign: "left" }}>Дата</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {filteredOrders.map(o => (
-                        <tr key={o.id} style={{ borderBottom: "1px solid #ddd" }}>
-                            <td style={{ padding: "10px" }}>{o.id}</td>
-                            <td style={{ padding: "10px" }}>{o.user_login}</td>
-                            <td style={{ padding: "10px" }}>{Number(o.total_sum).toFixed(2)} ₽</td>
-                            <td style={{ padding: "10px" }}>{new Date(o.created_at).toLocaleString()}</td>
+            {/* Таблица заказов */}
+            <div className="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Пользователь</th>
+                            <th>Сумма</th>
+                            <th>Дата</th>
                         </tr>
-                    ))}
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        {filteredOrders.map(o => (
+                            <tr key={o.id}>
+                                <td>{o.id}</td>
+                                <td>{o.user_login}</td>
+                                <td>{Number(o.total_sum || 0).toFixed(2)} ₽</td>
+                                <td>{new Date(o.created_at).toLocaleString()}</td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            </div>
         </div>
     );
 }

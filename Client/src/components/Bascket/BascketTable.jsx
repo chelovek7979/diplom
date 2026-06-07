@@ -117,31 +117,33 @@ const handlePayment = async () => {
 
             return (
               <tr key={product.idProduct}>
-                <td data-label="Товар">{product.Product_title}</td>
+                <td data-label="Товар" className="left-text">{product.Product_title}</td>
                 <td data-label="Цена">
                   {pricePerUnit.toFixed(2)} ₽
                   {count > 100 && <span className="discount"> (скидка 10%)</span>}
                 </td>
                 <td data-label="Количество">
-                  <button onClick={() => updateCart(product, count - 1)}>-</button>
-                  {count}
-                  <button onClick={() => updateCart(product, count + 1)}>+</button>
-                </td>
-                <td data-label="Сумма">{total.toFixed(2)} ₽</td>
+                <button onClick={() => updateCart(product, count - 1)}>-</button>
+                <span className="span">{count}</span>
+                <button onClick={() => updateCart(product, count + 1)}>+</button>
+              </td>
+                <td data-label="Сумма" >{total.toFixed(2)} ₽</td>
               </tr>
             );
           })}
 
           <tr className="total-row">
-            <td data-label="Итого" colSpan="3">Общая сумма:</td>
+            <td data-label="Итого" colSpan="3" className="left-text">Общая сумма:</td>
             <td data-label="Сумма" className="total">{totalSum.toFixed(2)} ₽</td>
           </tr>
         </tbody>
       </table>
 
-      <button onClick={handlePayment} disabled={items.length === 0}>
+      <div className="parent-btn-by">
+      <button onClick={handlePayment} disabled={items.length === 0} className="btn-by">
         Оплатить
       </button>
+        </div>    
     </>
   );
 }

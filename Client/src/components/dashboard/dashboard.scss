@@ -27,3 +27,98 @@ th, td {
 input {
     margin-right: 10px;
 }
+.dashboard {
+    padding: 20px;
+    font-family: sans-serif;
+}
+
+/* KPI GRID */
+.kpi-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+    margin-top: 20px;
+}
+
+/* KPI CARD */
+.kpi-card {
+    background: #074eb8;
+    color: white;
+    padding: 18px;
+    border-radius: 12px;
+    text-align: center;
+    box-shadow:  4px 15px rgba(0,0,0,0.15);
+}
+
+/* KPI TITLE */
+.kpi-title {
+    font-size: 14px;
+    opacity: 0.9;
+}
+
+/* KPI VALUE */
+.kpi-value {
+    font-size: 22px;
+    font-weight: bold;
+    margin-top: 8px;
+}
+
+/* FILTER */
+.filter {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+}
+
+/* INPUT */
+.filter input {
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+}
+
+/* BUTTON */
+.filter button {
+    padding: 10px 15px;
+    background: #3b82f6;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+/* TABLE WRAPPER */
+.table-wrapper {
+    overflow-x: auto;
+}
+
+/* TABLE */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 600px; 
+}
+
+th, td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+/* RESPONSIVE */
+@media (max-width: 1024px) {
+    .kpi-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .kpi-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .filter {
+        flex-direction: column;
+    }
+}

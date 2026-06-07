@@ -115,10 +115,10 @@ const reviews = [
       <section className="partners">
       <h2>Наши клиенты и партнеры</h2>
       <div className="partners-logos">
-        <img src={image_logo_1} alt="Компания 1" />
-        <img src={image_logo_2} alt="Компания 2" />
-        <img src={image_logo_3} alt="Компания 3" />
-        <img src={image_logo_4} alt="Компания 4" />
+        <img src={image_logo_1} alt="Компания 1"  id='qw' />
+        <img src={image_logo_2} alt="Компания 2" id='qw' />
+        <img src={image_logo_3} alt="Компания 3" id='qw' />
+        <img src={image_logo_4} alt="Компания 4" id='qw' />
       </div>
     </section>
 
