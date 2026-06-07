@@ -74,7 +74,7 @@ export default function Dashboard() {
             .then(data => {
                 setStats(prev => ({
                     ...prev,
-                    discounts: { discountPercent: Number(data.discountPercent || 0) }
+                    discounts: { discountPercent: Number(data.percent || 0) }
                 }));
             });
 

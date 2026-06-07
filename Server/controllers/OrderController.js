@@ -138,7 +138,7 @@ export const getDiscountStats = (req, res) => {
     const q = `
         SELECT
             COUNT(*) AS totalOrders,
-            SUM(CASE WHEN discont != '0%' THEN 1 ELSE 0 END) AS discountOrders
+            SUM(CASE WHEN discont = 'TRUE' THEN 1 ELSE 0 END) AS discountOrders
         FROM orders
     `;
     db.query(q, (err, result) => {
