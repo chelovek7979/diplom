@@ -52,7 +52,7 @@ export default function ChangePanel() {
               <td className="centre">{p.Product_price}</td>
               <td className="centre">{p.product_count}</td>
               <td>
-                <button onClick={() => handleEditClick(p)}>Редактировать</button>
+                <button className="btn--edit" onClick={() => handleEditClick(p)}>Редактировать</button>
               </td>
             </tr>
           ))}

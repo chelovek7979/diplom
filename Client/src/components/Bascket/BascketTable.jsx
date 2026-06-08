@@ -156,9 +156,13 @@ const handlePayment = async () => {
       </table>
 
       <div className="parent-btn-by">
-      <button onClick={handlePayment} disabled={items.length === 0} className="btn-by">
-        Оплатить
-      </button>
+        <button onClick={clearCart} disabled={items.length === 0} className="btn-danger">
+          Очистить карзину
+        </button>
+        <button onClick={handlePayment} disabled={items.length === 0} className="btn-by">
+          Оплатить
+        </button>
+        
         </div>    
     </>
   );

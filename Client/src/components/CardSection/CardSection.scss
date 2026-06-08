@@ -54,7 +54,7 @@
       span {
         font-size: 32px;
         font-weight: 800;
-        background: linear-gradient(135deg, #db7622 0%, #764ba2 100%);
+        background: #D97706;
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         background-clip: text;
@@ -118,6 +118,10 @@
 
 .card-quantity {
   margin: 10px 0;
+  label{
+    display: flex;
+    gap: 20px;
+  }
   
   
   span{

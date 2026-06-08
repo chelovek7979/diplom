@@ -1,5 +1,6 @@
 import { useState } from "react";
 import './addProduct.scss'
+import add from '../../assets/add.svg'
 
 export default function AddProduct() {
   const [Product_title, setProduct_title] = useState("");
@@ -78,67 +79,74 @@ export default function AddProduct() {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <input
-        type="text"
-        placeholder="Название"
-        value={Product_title}
-        onChange={(e) => setProduct_title(e.target.value)}
-      />
-      <input
-        type="text"
-        placeholder="Описание"
-        value={Product_description}
-        onChange={(e) => setProduct_description(e.target.value)}
-      />
+    <div className="add-flex">
+    
+      <form onSubmit={handleSubmit}>
+        <input
+          type="text"
+          placeholder="Название"
+          value={Product_title}
+          onChange={(e) => setProduct_title(e.target.value)}
+        />
 
-      {/* Выпадающий список категорий */}
-      <select
-        value={Product_category}
-        onChange={(e) => setProduct_category(e.target.value)}
-      >
-        <option value="">Выберите категорию</option>
-        {categories.map((cat, idx) => (
-          <option key={idx} value={cat}>
-            {cat}
-          </option>
-        ))}
-      </select>
 
-      <input
-        type="number"
-        placeholder="Цена"
-        value={Product_price}
-        onChange={(e) => setProduct_price(e.target.value)}
-      />
-      <input
-        type="number"
-        placeholder="Количество"
-        value={product_count}
-        onChange={(e) => setproduct_count(e.target.value)}
-      />
+        {/* Выпадающий список категорий */}
+        <select
+          value={Product_category}
+          onChange={(e) => setProduct_category(e.target.value)}
+        >
+          <option value="">Выберите категорию</option>
+          {categories.map((cat, idx) => (
+            <option key={idx} value={cat}>
+              {cat}
+            </option>
+          ))}
+        </select>
 
-      {/* Поле для загрузки файла */}
-      <input
-      className="setFile"
-        id="imageInput"
-        type="file"
-        accept="image/*"
-        onChange={(e) => setProduct_image_file(e.target.files[0])}
-      />
+        <input
+          type="number"
+          placeholder="Цена"
+          value={Product_price}
+          onChange={(e) => setProduct_price(e.target.value)}
+        />
+        <input
+          type="number"
+          placeholder="Количество"
+          value={product_count}
+          onChange={(e) => setproduct_count(e.target.value)}
+        />
+        <textarea
+          type="text"
+          
+          placeholder="Описание"
+          value={Product_description}
+          onChange={(e) => setProduct_description(e.target.value)}
+        />
 
-      <button type="submit" className="green">Добавить</button>
+        {/* Поле для загрузки файла */}
+        <input
+        className="setFile"
+          id="imageInput"
+          type="file"
+          accept="image/*"
+          onChange={(e) => setProduct_image_file(e.target.files[0])}
+        />
+        
 
-      {/* Отображение ошибок */}
-      {errors.length > 0 && (
-        <div style={{ color: "red", marginTop: "10px" }}>
-          <ul>
-            {errors.map((err, idx) => (
-              <li key={idx}>{err}</li>
-            ))}
-          </ul>
-        </div>
-      )}
-    </form>
+        <button type="submit" className="green">Добавить</button>
+
+        {/* Отображение ошибок */}
+        {errors.length > 0 && (
+          <div style={{ color: "red", marginTop: "10px" }}>
+            <ul>
+              {errors.map((err, idx) => (
+                <li key={idx}>{err}</li>
+              ))}
+            </ul>
+          </div>
+        )}
+      </form>
+      <img src={add} alt="" className="add-img" />
+    </div>
   );
 }

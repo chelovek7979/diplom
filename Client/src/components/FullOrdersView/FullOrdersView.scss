@@ -1,0 +1,73 @@
+.orders-view {
+  //padding: 24px;
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    margin-bottom: 20px;
+
+    h2 {
+      margin: 0;
+    }
+  }
+
+  &__table-wrapper {
+    overflow-x: auto;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+  }
+
+  &__table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 1200px;
+
+    th {
+      background: #d97706;
+      color: white;
+      padding: 14px;
+      text-align: left;
+    }
+
+    td {
+      padding: 14px;
+      border-bottom: 1px solid #ececec;
+    }
+
+    tbody tr:hover {
+      background: #f8fafc;
+    }
+  }
+}
+
+.stage {
+  padding: 10px 12px;
+  border-radius: 5px;
+  font-size: 13px;
+  font-weight: 600;
+  
+
+  &--новый {
+    background: #dbeafe;
+    color: #2563eb;
+  }
+
+  &--ожидает\ получение {
+    background: #fef3c7;
+    color: #d97706;
+  }
+
+  &--нужно\ связаться {
+    background: #fee2e2;
+    color: #dc2626;
+  }
+
+  &--завершено {
+    
+    background: #22C55E;
+    color: #000000;
+  }
+}

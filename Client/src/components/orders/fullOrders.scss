@@ -1,5 +1,5 @@
 .orders {
-  padding: 20px;
+  
 
   &__header {
     display: flex;
@@ -47,6 +47,8 @@
       padding: 14px;
       text-align: left;
       border-bottom: 1px solid #ececec;
+      text-align: center;
+      
     }
 
     th {
@@ -91,15 +93,18 @@
   }
 
   &--edit {
-    background: #2196f3;
+    
+    background-color: #111a2e;
   }
 
   &--save {
-    background: #4caf50;
+    
+    background-color: #22C55E;
   }
 
   &--cancel {
-    background: #f44336;
+    //background: #f44336;
+    background-color: #EF4444;
   }
 }
 
@@ -115,5 +120,19 @@
     &__search {
       width: 100%;
     }
+  }
+}
+
+.orders__filter {
+  padding: 10px 14px;
+  border-radius: 8px;
+  border: 1px solid #d9d9d9;
+  outline: none;
+  margin-left: 0px;
+  margin-bottom: 20px;
+  
+
+  &:focus {
+    border-color: #4a90e2;
   }
 }

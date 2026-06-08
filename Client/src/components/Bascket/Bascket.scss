@@ -8,7 +8,7 @@
     
     width: 100%;
     max-width: rem(1420);
-    margin: auto;
+    margin: 30px auto;
     border-radius: 20px;
     color: black;
     padding: rem(10);
@@ -31,7 +31,7 @@
 }
     
     table{
-        width: 90%;
+        width: 98%;
         text-align: center;
         margin: auto;
         border-collapse: separate;
@@ -74,13 +74,7 @@
                         border-left: none;
                     }
                 }
-                
-                &:hover {
-                    td {
-                        background-color: #f9fafb;
-                        transition: all 0.3s ease;
-                    }
-                }
+   
             }
             .total{
                 background-color: var(--color-orange);
@@ -327,10 +321,17 @@
     .basketSpace table tbody tr {
         animation: slideIn 0.3s ease-out;
     }
+    .parent-btn-by{
+        flex-direction: column;
+        gap: 10px;
+        margin: 0;
+    }
 }
 .parent-btn-by{
     display: flex;
     justify-content: center;
+    align-items: center;
+    gap: 20px;
 }
 .btn-by{
     width: 300px;
@@ -352,4 +353,18 @@
 }
 
 
-
+.btn-danger{
+        width: 300px;
+    height: 60px;
+    
+    
+    border: 1px solid black;
+    box-shadow: 1px 2px 2px black;
+    background-color: red;
+}
+@media (max-width: 768px){
+.btn-by{
+ 
+    margin: 0 ;
+}
+}

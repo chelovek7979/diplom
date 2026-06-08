@@ -15,7 +15,7 @@
 table {
     width: 100%;
     border-collapse: collapse;
-    margin-top: 20px;
+   // margin-top: 20px;
 }
 
 th, td {
@@ -28,7 +28,7 @@ input {
     margin-right: 10px;
 }
 .dashboard {
-    padding: 20px;
+    //padding: 20px;
     font-family: sans-serif;
 }
 
@@ -42,12 +42,12 @@ input {
 
 /* KPI CARD */
 .kpi-card {
-    background: #074eb8d4;
-    color: white;
+    background: #2564ebbb;
+    color: rgb(0, 0, 0);
     padding: 18px;
     border-radius: 12px;
     text-align: center;
-    //box-shadow: 2px 4px 3px rgba(0,0,0,0.15);
+    box-shadow: 2px 4px 3px rgba(0,0,0,0.15);
 }
 
 /* KPI TITLE */

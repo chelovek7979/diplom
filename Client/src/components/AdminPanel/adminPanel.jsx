@@ -5,6 +5,7 @@ import EditProduct from "../ChangeProduct/ChangeProduct";
 import ChangePanel from "../ChangeProduct/ChangePanel";
 import Dashboard from "../dashboard/dashbord";
 import OrdersTable from "../orders/FullOrders";
+import FullOrdersView from "../FullOrdersView/FullOrdersView";
 
 export default function AdminPanel() {
     const [activeSection, setActiveSection] = useState("products");
@@ -15,30 +16,43 @@ export default function AdminPanel() {
             <aside className="sidebar">
                 
                 <button 
-                    className={activeSection === "products" ? "active" : ""} 
-                    onClick={() => setActiveSection("products")}
+                    className={ `left ${activeSection === "products" ? "active" : ""}`} 
+                    onClick={() => setActiveSection("products")} 
+                    
                 >
                     Добавить товар
                 </button>
                 <button 
-                    className={activeSection === "orders" ? "active" : ""} 
+                    
+                    className={ `left ${activeSection === "orders" ? "active" : ""}`} 
                     onClick={() => setActiveSection("orders")}
                 >
                     Изменить товар
                 </button>
 
+
                 <button 
-                    className={activeSection === "settings" ? "active" : ""} 
+                    
+                    className={ `left ${activeSection === "settings" ? "active" : ""}`} 
                     onClick={() => setActiveSection("settings")}
                 >
                     Статистика продаж
                 </button>
 
                 <button 
-                    className={activeSection === "change" ? "active" : ""} 
+                    
+                    className={ `left ${activeSection === "change" ? "active" : ""}`} 
                     onClick={() => setActiveSection("change")}
                 >
                     Управление заказами
+                </button>
+
+                <button 
+                    
+                    className={ `left ${activeSection === "full" ? "active" : ""}`} 
+                    onClick={() => setActiveSection("full")}
+                >
+                    Все продажи
                 </button>
             </aside>
 
@@ -75,7 +89,17 @@ export default function AdminPanel() {
 
                 {activeSection === "change" && (
                     <div className="section">
+                        <h2>Заказы</h2>
+                        <p>Изменение и мониторинг этапов продажи</p>
                         <OrdersTable/>
+                    </div>
+                )}
+
+                {activeSection === "full" && (
+                    <div className="section">
+                        <h2>Заказы</h2>
+                        <p>Изменение и мониторинг этапов продажи</p>
+                        <FullOrdersView/>
                     </div>
                 )}
             </main>

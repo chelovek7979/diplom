@@ -44,15 +44,12 @@ return (
 
       {user_role === 'admin' ? (
         <>
-          <button
-            onClick={() => {
-              localStorage.removeItem('user');
-              window.location.reload();
-            }}
+          <h3
+ 
             className="exitButtom"
           >
-            Выйти из панели администратора
-          </button>
+           {` [ Добро пожаловать в панель администратора  ]`}
+          </h3>
 
           <AdminPanel />
         </>

@@ -15,6 +15,7 @@ export default function Header_right({ bascket }) {
     const handleLogout = () => {
         localStorage.removeItem('user');
         navigate('/login');
+        window.location.reload()
     };
 
     return (
@@ -35,6 +36,7 @@ export default function Header_right({ bascket }) {
                 <img
                     src={exit}
                     alt="logout"
+
                     onClick={handleLogout}
                     className='exit'
                     style={{ cursor: "pointer" }}

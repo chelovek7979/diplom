@@ -5,10 +5,11 @@
     display: flex;
     height: auto;
     font-family: Arial, sans-serif;
-    max-width: 1420px;
-    margin: rem(10) auto;
+    max-width: 1520px;
+    margin: rem(10) auto  ;
     padding: 0 rem(10);
     border-radius: 10px;
+    gap: 15px;
     
     
     
@@ -26,13 +27,15 @@
     }
 
     .sidebar {
-        width: 220px;
+        width: 260px;
         background-color: #2c3e50;
         color: #ecf0f1;
         display: flex;
         flex-direction: column;
-        padding: 20px;
-        gap: 10px;
+        min-width: 210px;
+        border-radius: 15px;
+        padding: 10px;
+        gap: 20px;
         
 
         
@@ -45,6 +48,10 @@
             gap: 8px;
             border-radius: 10px;
             
+            .left{
+                display: flex;
+                justify-content: center;
+            }
             h2 {
                 width: 100%;
                 margin-bottom: 5px;
@@ -53,9 +60,11 @@
             
             button {
                 flex: 0 1 auto;
-                text-align: center;
-                padding: 8px 12px;
+                //text-align: center;
+                padding: 8px 15px;
                 font-size: 14px;
+                text-align: left;
+                justify-content: right;
             }
         }
         
@@ -111,7 +120,7 @@
             border: none;
             color: inherit;
             text-align: left;
-            padding: 10px 15px;
+            //padding: 10px 15px;
             cursor: pointer;
             font-size: 16px;
             border-radius: 5px;
@@ -132,6 +141,7 @@
         flex: 1;
         background-color: #ecf0f1;
         padding: rem(20);
+        border-radius: 15px;
         
         
         @media (max-width: 768px) {
@@ -204,4 +214,9 @@
             }
         }
     }
+}
+
+.left{
+    display: flex;
+    justify-content: left;
 }

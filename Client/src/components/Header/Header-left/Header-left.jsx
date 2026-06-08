@@ -12,6 +12,7 @@ export default function Header_left({ bascket, openLogin }) {
         localStorage.removeItem("user");
         setIsOpen(false);
         navigate("/login");
+        window.location.reload()
     };
 
     useEffect(() => {
@@ -28,6 +29,11 @@ export default function Header_left({ bascket, openLogin }) {
         window.addEventListener("resize", handleResize);
         return () => window.removeEventListener("resize", handleResize);
     }, []);
+
+
+
+
+
 
     return (
         <>

@@ -16,6 +16,7 @@ export default function OrdersTable() {
   const [search, setSearch] = useState("");
   const [editingId, setEditingId] = useState(null);
   const [selectedStage, setSelectedStage] = useState("");
+  const [stageFilter, setStageFilter] = useState(""); // "" = все
 
   useEffect(() => {
     loadOrders();
@@ -64,14 +65,16 @@ export default function OrdersTable() {
     }
   };
 
-  const filteredOrders = orders.filter((order) =>
-    order.user_full_name.toLowerCase().includes(search.toLowerCase())
-  );
+const filteredOrders = orders.filter((order) => {
+  const matchesName = order.user_full_name.toLowerCase().includes(search.toLowerCase());
+  const matchesStage = stageFilter ? order.stage === stageFilter : true;
+  return matchesName && matchesStage;
+});
 
   return (
     <div className="orders">
       <div className="orders__header">
-        <h2>Заказы</h2>
+        
         <input
           type="text"
           placeholder="Поиск по имени..."
@@ -81,6 +84,19 @@ export default function OrdersTable() {
         />
       </div>
 
+      <select
+        value={stageFilter}
+        onChange={(e) => setStageFilter(e.target.value)}
+        className="orders__filter"
+        >
+        <option value="">Все стадии</option>
+        {STAGES.map((stage) => (
+            <option key={stage} value={stage}>
+            {stage}
+            </option>
+        ))}
+        </select>
+
       <div className="orders__table-wrapper">
         <table className="orders__table">
           <thead>
@@ -88,7 +104,7 @@ export default function OrdersTable() {
               <th>ID</th>
               <th>Имя</th>
               <th>Телефон</th>
-              <th>Stage</th>
+              <th>Этап</th>
               <th>Действия</th>
             </tr>
           </thead>

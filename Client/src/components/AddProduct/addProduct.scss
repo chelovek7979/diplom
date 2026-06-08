@@ -4,14 +4,22 @@
 form {
     display: flex;
     flex-direction: column;
-    width: 50%;
+    width: 60%;
     gap: rem(20);
     
-    input, select {
+    input, select,textarea {
         height: 40px;
         border-radius: rem(5);
         padding-left: rem(5);
+        margin: 0;
+        max-width: 100%;
+        
     }
+    textarea{
+min-height: 100px;
+    }
+
+
     
     .green {
         background-color: rgb(18, 199, 36);
@@ -118,3 +126,21 @@ form {
     transition: background-color 0.2s;
     border: none;
 }
+.add-flex{
+    display: flex;
+    justify-content: space-around;
+}
+ .add-img{
+    width: 300px;
+ }
+
+ @media (max-width: 908px){
+     .add-img{
+    display: none;
+ }
+ form {
+
+    width: 90%;
+ 
+
+ }}

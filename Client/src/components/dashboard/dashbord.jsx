@@ -104,7 +104,7 @@ export default function Dashboard() {
 
     return (
         <div className="dashboard">
-            <h2 className="text-center">панель показателей</h2>
+            
 
             {/* KPI-блоки */}
             <div className="kpi-grid">

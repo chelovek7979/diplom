@@ -128,3 +128,24 @@ font-family: "AnyConv",sans-serif;
   margin: auto;
 }
 
+@media (max-width: 550px){
+.modal {
+  padding: rem(20) rem(30);
+
+  .modal-content{
+    .field{
+      display: flex;
+      flex-direction: column;
+      width: 270px;
+      margin: auto;
+    }    .btn{
+      
+    width: 270px;
+    
+      }}
+
+
+
+
+}
+}
