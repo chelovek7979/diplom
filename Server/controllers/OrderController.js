@@ -182,3 +182,15 @@ export const getPopularPayment = (req, res) => {
         res.json(result[0] || { payment_method: "Нет данных", total: 0 });
     });
 };
+
+export const getFFull = (req,res) =>{
+    const q = 
+    "SELECT * from orders"
+
+    db.query(q,(err,data) =>{
+        if(err){
+            return res.status(500).json(err)
+        }
+         return res.json(data)
+    })
+}

@@ -31,11 +31,19 @@ export default function AdminPanel() {
                 >
                     Пользователи
                 </button> */}
+
                 <button 
                     className={activeSection === "settings" ? "active" : ""} 
                     onClick={() => setActiveSection("settings")}
                 >
                     Статистика продаж
+                </button>
+
+                <button 
+                    className={activeSection === "change" ? "active" : ""} 
+                    onClick={() => setActiveSection("change")}
+                >
+                    Управление заказами
                 </button>
             </aside>
 
@@ -64,7 +72,15 @@ export default function AdminPanel() {
                 )}
                 {activeSection === "settings" && (
                     <div className="section">
+                        <h2>Дашборд</h2>
+                        <p>Просмотр информации о покупках</p>
                         <Dashboard/>
+                    </div>
+                )}
+
+                {activeSection === "change" && (
+                    <div className="section">
+                   
                     </div>
                 )}
             </main>

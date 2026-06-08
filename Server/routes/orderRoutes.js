@@ -6,6 +6,7 @@ import { getGeneralStats,
     getOrdersByDate,
     getDiscountStats,
     getItemsStats,
+    getFFull,
     getPopularPayment } from "../controllers/OrderController.js";
 
 const router = Router();
@@ -21,6 +22,7 @@ router.get("/orders-by-date", getOrdersByDate);
 router.get("/discount-stats", getDiscountStats);
 router.get("/items-stats", getItemsStats);
 router.get("/popular-payment", getPopularPayment);
+router.get("/full", getFFull);
 
 
 

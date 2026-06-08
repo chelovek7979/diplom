@@ -20,6 +20,7 @@
         align-items: center;
         border-radius: rem(20);
         
+        
         h1{
             @include fluid-text(38,24);
             margin: 0;
