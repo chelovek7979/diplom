@@ -195,45 +195,28 @@ export const getFFull = (req,res) =>{
     })
 }
 
+export const updateOrderStage = (req, res) => {
+  const { id } = req.params;
+  const { stage } = req.body;
 
-export const updateOrderStage = async (req, res) => {
-  try {
-    const { id } = req.params;
-    const { stage } = req.body;
+  const allowedStages = ["новый","ожидает получение","нужно связаться","завершено"];
+  if (!allowedStages.includes(stage)) {
+    return res.status(400).json({ message: "Некорректное значение stage" });
+  }
 
-    const allowedStages = [
-      "новый",
-      "ожидает получение",
-      "нужно связаться",
-      "завершено",
-    ];
+  const query = "UPDATE orders SET stage = ? WHERE id = ?";
+  const values = [stage, id];
 
-    if (!allowedStages.includes(stage)) {
-      return res.status(400).json({
-        message: "Некорректное значение stage",
-      });
+  db.query(query, values, (err, result) => {
+    if (err) {
+      console.error("Ошибка обновления stage:", err);
+      return res.status(500).json({ message: "Ошибка сервера", error: err.message });
     }
-
-    const [result] = await db.query(
-      "UPDATE orders SET stage = ? WHERE id = ?",
-      [stage, id]
-    );
 
     if (result.affectedRows === 0) {
-      return res.status(404).json({
-        message: "Заказ не найден",
-      });
+      return res.status(404).json({ message: "Заказ не найден" });
     }
 
-    res.json({
-      success: true,
-      message: "Статус успешно обновлён",
-    });
-  } catch (error) {
-    console.error(error);
-
-    res.status(500).json({
-      message: "Ошибка сервера",
-    });
-  }
+    res.json({ success: true, message: "Статус успешно обновлён" });
+  });
 };
