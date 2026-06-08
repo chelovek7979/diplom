@@ -4,7 +4,7 @@
 .landing {
   font-family: "Arial", sans-serif;
   color: #fff;
-  background-color: #00171F;
+  //background-color: #00171F;
   
 
   section.hero {
@@ -12,10 +12,14 @@
     border-radius: 30px;
     padding: 50px 20px;
     
-    max-width: 1420px;
+    max-width: 1570px;
     margin: auto;
+    margin-top: 30px;
     
     background: linear-gradient(5deg, #FCA311 0%, #00171F 100%);
+    box-shadow: 4px 5px 20px rgba(0, 0, 0, 0.4);
+
+
     
     h1 {
       font-size: 3rem;
@@ -29,7 +33,7 @@
     }
     img {
       width: 80%;
-      max-width: 800px;
+      max-width: 900px;
       border-radius: 10px;
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
       margin: auto;
@@ -39,18 +43,26 @@
       }
     }
   }
-
+    section.reviews {
+      //background-color: #002233;
+      background-color: rgba(255, 255, 255, 0.322);
+      border: 1px solid white;
+      box-shadow: inset 0 5px 20px rgb(255, 255, 255);
+      
+    }
+  
   section.about,
   section.reviews {
     max-width: 1200px;
-    margin: 30px auto;
+    margin: 50px auto;
     padding: 20px 20px;
-    background-color: #002233;
-    border-radius: 20px;
+    //background-color: #002233;
+    border-radius: 15px;
+
     
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.4);
+    //box-shadow: 0 5px 20px rgba(0, 0, 0, 0.4);
     h2 {
-      font-size: 2rem;
+      font-size: 2.5rem;
       margin-bottom: 20px;
       text-align: center;
       color: #FCA311;
@@ -64,29 +76,34 @@
   }
 
   section.instructions {
-    display: flex;
-    flex-direction: column;
-    gap: 30px;
-    margin: 50px auto;
-    width: 100%;
-    max-width: 1420px;
+  max-width: 1420px;
+  margin: 10px auto;
+
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 25px;
+
     .instruction {
-      background: linear-gradient(20deg, #FCA311, #b6b3b3);
-      display: flex;
-      flex-direction: column;
-      height: 100vh;
-      width: 100vw;          
-      max-height: 200px ;
-      max-width: 1420px;       
-      padding: 20px;
-      
-      border-radius: 15px;
-      color: #00171F;
-      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
-      opacity: 0;
-      transform: translateY(30px);
-      animation: fadeSlideIn 0.8s forwards;
-      animation-delay: calc(var(--index) * 0.2s);
+ min-height: 280px;
+
+  background: linear-gradient(
+    145deg,
+    rgb(219, 185, 131),
+    rgb(255, 197, 80)
+  );
+
+  border-radius: 24px;
+
+  padding: 30px;
+
+  transition: 0.3s ease;
+      background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.25),
+    inset 0 1px 1px rgba(255, 255, 255, 0.2);
       
       &:hover {
         padding-top: 10px;
@@ -96,6 +113,7 @@
         font-size: 1.6rem;
         margin-bottom: 10px;
         font-weight: 800;
+        color:  #FCA311;
       }
       p {
         font-size: 1.3rem;
@@ -128,7 +146,7 @@
     justify-content: center;
     .instruction {
       flex: 1 1 300px;
-      max-width: 350px;
+      //max-width: 350px;
     }
   }
 }
@@ -142,6 +160,13 @@
   color: #fff;
   text-align: center;
   box-shadow: 0 5px 20px rgba(0,0,0,0.4);
+      background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.25),
+    inset 0 1px 1px rgba(255, 255, 255, 0.2);
 
   h2 {
     font-size: 2rem;
@@ -159,7 +184,8 @@
     height: 450px;
     border-radius: 15px;
     overflow: hidden;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    //box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    box-shadow: 0 5px 20px rgba(255, 255, 255, 0.4);
   }
 }
 
@@ -170,13 +196,15 @@
   text-align: center;
   //background: linear-gradient(135deg, #00171F, #00334D);
   box-shadow: 0px 1px 42px 19px rgba(34, 60, 80, 0.2) inset;
-  background-color: white;
+  background-color: rgba(255, 255, 255, 0.322);
   border-radius: 20px;
   color: #000000;
+  border: 1px solid white;
+  box-shadow: inset 0 5px 20px rgb(255, 255, 255);
   h2 {
     font-size: 2rem;
     margin-bottom: 30px;
-    color: #000000;
+    color: #ffffff;
   }
 
   .partners-logos {
@@ -255,3 +283,8 @@
     }
 
 
+    @media (max-width: 1600px) {
+      section.hero{
+        width: 97%;
+      }
+    }

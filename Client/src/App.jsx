@@ -52,6 +52,7 @@ return (
           </h3>
 
           <AdminPanel />
+          
         </>
       ) : (
         <>
@@ -69,6 +70,7 @@ return (
 
       </CartProvider>
     </BrowserRouter>
+    
   );
 }
 
