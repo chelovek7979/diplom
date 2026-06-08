@@ -4,6 +4,7 @@ import AddProduct from '../AddProduct/AddProduct'
 import EditProduct from "../ChangeProduct/ChangeProduct";
 import ChangePanel from "../ChangeProduct/ChangePanel";
 import Dashboard from "../dashboard/dashbord";
+import OrdersTable from "../orders/FullOrders";
 
 export default function AdminPanel() {
     const [activeSection, setActiveSection] = useState("products");
@@ -25,12 +26,6 @@ export default function AdminPanel() {
                 >
                     Изменить товар
                 </button>
-{/*                 <button 
-                    className={activeSection === "users" ? "active" : ""} 
-                    onClick={() => setActiveSection("users")}
-                >
-                    Пользователи
-                </button> */}
 
                 <button 
                     className={activeSection === "settings" ? "active" : ""} 
@@ -80,7 +75,7 @@ export default function AdminPanel() {
 
                 {activeSection === "change" && (
                     <div className="section">
-                   
+                        <OrdersTable/>
                     </div>
                 )}
             </main>
