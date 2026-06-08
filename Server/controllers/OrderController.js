@@ -214,7 +214,7 @@ export const updateOrderStage = async (req, res) => {
       });
     }
 
-    const [result] = await pool.query(
+    const [result] = await db.query(
       "UPDATE orders SET stage = ? WHERE id = ?",
       [stage, id]
     );

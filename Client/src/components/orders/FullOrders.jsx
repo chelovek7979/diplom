@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./fullOrders.scss";
 
 const API_URL = "https://diplom-1-54sb.onrender.com/api/orders/full";
-const UPDATE_URL = "https://diplom-1-54sb.onrender.com/api/orders";
+const UPDATE_URL = "https://diplom-1-54sb.onrender.com/api/orders/orders";
 
 const STAGES = [
   "новый",
