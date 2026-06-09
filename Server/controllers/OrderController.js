@@ -88,7 +88,8 @@ export const createOrder = (req, res) => {
 
         return res.json({
             message: "Оплата прошла успешно",
-            wholesale
+            wholesale,
+            info : data
         });
     });
 };
