@@ -2,6 +2,7 @@ import { db } from "../db.js";
 
 export const createOrder = (req, res) => {
     console.log(req.body);
+
     const {
         total_sum,
         created_at,
@@ -11,16 +12,31 @@ export const createOrder = (req, res) => {
         discont,
         user_id,
         items_count,
-        items // ✅ массив товаров из фронта
+        items
     } = req.body;
-console.log(req.body);
-    const status = 'paid';
-    const payment_method = 'mir';
+
+    // Автоматически определяем оптовый заказ
+    const wholesale = items_count > 200 ? "Да" : "Нет";
+
+    const status = "paid";
+    const payment_method = "mir";
 
     const query = `
         INSERT INTO orders 
-        (total_sum, created_at, user_login, user_full_name, user_number, discont, user_id, items_count, status, payment_method) 
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+        (
+            total_sum,
+            created_at,
+            user_login,
+            user_full_name,
+            user_number,
+            discont,
+            user_id,
+            items_count,
+            status,
+            payment_method,
+            wholesale
+        ) 
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
     `;
 
     const values = [
@@ -33,18 +49,18 @@ console.log(req.body);
         user_id,
         items_count,
         status,
-        payment_method
+        payment_method,
+        wholesale
     ];
 
-    // 1️⃣ Сначала создаём заказ
     db.query(query, values, (err, data) => {
         if (err) {
             console.error(err);
             return res.status(500).json(err);
         }
 
-        // 2️⃣ Уменьшаем количество купленных товаров
-        items.forEach(item => {
+        // Списываем товары со склада
+        items.forEach((item) => {
             db.query(
                 `
                 UPDATE products
@@ -55,20 +71,25 @@ console.log(req.body);
                 [item.count, item.idProduct, item.count],
                 (err2, result) => {
                     if (err2) {
-                        console.error(`Ошибка обновления товара ${item.idProduct}:`, err2);
+                        console.error(
+                            `Ошибка обновления товара ${item.idProduct}:`,
+                            err2
+                        );
                     } else if (result.affectedRows === 0) {
-                        console.warn(`Товар ${item.idProduct} не был списан — недостаточно на складе`);
+                        console.warn(
+                            `Товар ${item.idProduct} не был списан — недостаточно на складе`
+                        );
                     }
                 }
             );
         });
 
         return res.json({
-            message: "Оплата прошла успешно"
+            message: "Оплата прошла успешно",
+            wholesale
         });
     });
 };
-
 
 
 // 1. Общая статистика

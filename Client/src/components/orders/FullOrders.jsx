@@ -9,7 +9,13 @@ const STAGES = [
   "ожидает получение",
   "нужно связаться",
   "завершено",
+  "Направлено комерчесское предложение",
+  "Требуется доработка КП",
+  "На согласовании у клиента",
+  "отменён",
+  
 ];
+
 
 export default function OrdersTable() {
   const [orders, setOrders] = useState([]);
@@ -17,6 +23,7 @@ export default function OrdersTable() {
   const [editingId, setEditingId] = useState(null);
   const [selectedStage, setSelectedStage] = useState("");
   const [stageFilter, setStageFilter] = useState(""); // "" = все
+  const [wholesaleFilter, setWholesaleFilter] = useState(false);
 
   useEffect(() => {
     loadOrders();
@@ -66,9 +73,19 @@ export default function OrdersTable() {
   };
 
 const filteredOrders = orders.filter((order) => {
-  const matchesName = order.user_full_name.toLowerCase().includes(search.toLowerCase());
-  const matchesStage = stageFilter ? order.stage === stageFilter : true;
-  return matchesName && matchesStage;
+  const matchesName = order.user_full_name
+    .toLowerCase()
+    .includes(search.toLowerCase());
+
+  const matchesStage = stageFilter
+    ? order.stage === stageFilter
+    : true;
+
+  const matchesWholesale = wholesaleFilter
+    ? order.wholesale === "Да"
+    : true;
+
+  return matchesName && matchesStage && matchesWholesale;
 });
 
   return (
@@ -96,12 +113,21 @@ const filteredOrders = orders.filter((order) => {
             </option>
         ))}
         </select>
+        <label className="orders__checkbox">
+          <input
+            type="checkbox"
+            checked={wholesaleFilter}
+            onChange={(e) => setWholesaleFilter(e.target.checked)}
+          />
+          Только опт
+        </label>
 
       <div className="orders__table-wrapper">
         <table className="orders__table">
           <thead>
             <tr>
               <th>ID</th>
+              <th>Опт</th>
               <th>Имя</th>
               <th>Телефон</th>
               <th>Этап</th>
@@ -113,6 +139,7 @@ const filteredOrders = orders.filter((order) => {
               filteredOrders.map((order) => (
                 <tr key={order.id}>
                   <td>{order.id}</td>
+                  <td>{order.wholesale}</td>
                   <td>{order.user_full_name}</td>
                   <td>{order.user_number}</td>
                   <td>
@@ -160,7 +187,7 @@ const filteredOrders = orders.filter((order) => {
               ))
             ) : (
               <tr>
-                <td colSpan="5" className="orders__empty">
+                <td colSpan="6" className="orders__empty">
                   Ничего не найдено
                 </td>
               </tr>
