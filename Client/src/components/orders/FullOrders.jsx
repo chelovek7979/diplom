@@ -82,7 +82,7 @@ const filteredOrders = orders.filter((order) => {
     : true;
 
   const matchesWholesale = wholesaleFilter
-    ? order.wholesale === "Да"
+    ? String(order.Wholesale).trim().toLowerCase() === "да"
     : true;
 
   return matchesName && matchesStage && matchesWholesale;
@@ -112,14 +112,15 @@ const filteredOrders = orders.filter((order) => {
             {stage}
             </option>
         ))}
-        </select>
+        </select><br/>
+
         <label className="orders__checkbox">
           <input
             type="checkbox"
             checked={wholesaleFilter}
             onChange={(e) => setWholesaleFilter(e.target.checked)}
           />
-          Только опт
+          Только оптовые заказы
         </label>
 
       <div className="orders__table-wrapper">
@@ -139,7 +140,7 @@ const filteredOrders = orders.filter((order) => {
               filteredOrders.map((order) => (
                 <tr key={order.id}>
                   <td>{order.id}</td>
-                  <td>{order.wholesale}</td>
+                  <td>{order.Wholesale}</td>
                   <td>{order.user_full_name}</td>
                   <td>{order.user_number}</td>
                   <td>

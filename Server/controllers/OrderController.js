@@ -17,7 +17,7 @@ export const createOrder = (req, res) => {
 
     // Автоматически определяем оптовый заказ
     const wholesale = items_count > 200 ? "Да" : "Нет";
-
+    const stage = 'новый'
     const status = "paid";
     const payment_method = "mir";
 
@@ -34,9 +34,10 @@ export const createOrder = (req, res) => {
             items_count,
             status,
             payment_method,
-            wholesale
+            wholesale,
+            stage
         ) 
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
     `;
 
     const values = [
@@ -50,7 +51,8 @@ export const createOrder = (req, res) => {
         items_count,
         status,
         payment_method,
-        wholesale
+        wholesale,
+        stage
     ];
 
     db.query(query, values, (err, data) => {

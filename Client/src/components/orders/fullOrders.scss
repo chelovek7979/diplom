@@ -29,6 +29,7 @@
   &__table-wrapper {
     overflow-x: auto;
     border-radius: 12px;
+    margin-top: 20px;
     background: #fff;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
   }
@@ -121,6 +122,9 @@
       width: 100%;
     }
   }
+  .orders__filter{
+    width: 200px;
+  }
 }
 
 .orders__filter {
@@ -136,3 +140,5 @@
     border-color: #4a90e2;
   }
 }
+
+
