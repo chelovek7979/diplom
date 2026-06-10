@@ -223,7 +223,16 @@ export const updateOrderStage = (req, res) => {
   const { id } = req.params;
   const { stage } = req.body;
 
-  const allowedStages = ["новый","ожидает получение","нужно связаться","завершено"];
+  const allowedStages = [
+  "новый",
+  "ожидает получение",
+  "нужно связаться",
+  "завершено",
+  "Направлено комерчесское предложение",
+  "Требуется доработка КП",
+  "На согласовании у клиента",
+  "отменён",
+];
   if (!allowedStages.includes(stage)) {
     return res.status(400).json({ message: "Некорректное значение stage" });
   }
